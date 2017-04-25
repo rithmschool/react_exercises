@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .tweet {
+            border: 1px solid #0099CC;
+            border-radius: 5px;
+            margin: 20px 20%;
+            padding: 20px;
+        }
+
+        .username,
+        .date {
+            color: #999;
+            display: inline-block;
+            margin: 0 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app"></div>
+    <script src="https://unpkg.com/react@15/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
+    <script>
+
+        var div = React.DOM.div;
+        var span = React.DOM.span;
+        var p = React.DOM.p;
+
+        class Tweet extends React.Component {
+            render() {
+                return div({className: "tweet"}, 
+                    span(null, this.props.name),
+                    span({className: 'username'}, "@" + this.props.username),
+                    span({className: 'date'}, this.props.date),
+                    p(null, this.props.message)
+                );
+            }
+        }
+
+        var App = (
+            div(null,
+                React.createElement(Tweet, {
+                    name: "Matt Lane",
+                    username: "mmmaaatttttt",
+                    date: new Date().toDateString(),
+                    message: "This app will disrupt everything!!",
+                }),
+                React.createElement(Tweet, {
+                    name: "Elie Schoppik",
+                    username: "eschoppik",
+                    date: new Date().toDateString(),
+                    message: "#Ilovehashtags"
+                }),
+                React.createElement(Tweet, {
+                    name: "Tim Garcia",
+                    username: "TimGarcia0",
+                    date: new Date().toDateString(),
+                    message: "Follow me on Twitter!"
+                })
+            )
+        );
+
+        // lets put this on the DOM
+        ReactDOM.render(App, document.getElementById("app"));
+    </script>
+</body>
+</html>
