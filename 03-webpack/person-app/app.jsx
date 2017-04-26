@@ -1,29 +1,8 @@
-class Person extends React.Component {
-  
-  render() {
-    let drinkText = this.props.age >= 21 ?
-      "Have a drink!" :
-      "You must be 21.";
+import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
+import Person from './person.jsx';
 
-    let hobbies = this.props.hobbies.map((hobby,i) => <li key={i}>{hobby}</li>) 
-
-    return (
-      <div>
-        <p>Learn some information about this person:</p>
-        <ul>
-          <li>Name: {this.props.name.slice(0,6)}</li>
-          <li>Age: {this.props.age}</li>
-          <ul>Hobbies
-            {hobbies}
-          </ul>
-        </ul>
-        <h3>{drinkText}</h3>
-      </div>
-    );
-  }
-}
-
-class App extends React.Component {
+class App extends Component {
   render() {
     return (
       <div>
@@ -52,5 +31,4 @@ class App extends React.Component {
   }
 }
 
-// lets put this on the DOM
 ReactDOM.render(<App/>, document.getElementById("app"));
