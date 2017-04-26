@@ -2,7 +2,14 @@
 
 ### Part 1
 
-Refactor your previous example to use JSX. Your three components should not use any syntax like `React.DOM.h1` and should use babel to transpile.
+Create the following three components again:
+
+
+1. `FirstComponent`, which is an `h1` with the text "My very first component."
+2. `SecondComponent`, which is an `h2` with the text "My second component."
+3. `NamedComponent`, which is a `p` that should accept a property of "name" and display the text "My name is " + name. 
+
+But refactor your code to use JSX. Your three components should not use any syntax like `React.DOM.h1` and should use babel to transpile.
 
 ### Part 2
 
