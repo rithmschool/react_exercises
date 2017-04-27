@@ -7,4 +7,5 @@
 - [03 Webpack](./03-webpack/readme.md)
 - [04 Props and State](./04-props_state/readme.md)
 - [05 Events](./05-events/readme.md)
-- [06 React Life Cycle](./06-lifecycle/readme.md)
+- [06 Forms and Refs](./06-forms-and-refs/readme.md)
+- [07 React Life Cycle](./07-lifecycle/readme.md)

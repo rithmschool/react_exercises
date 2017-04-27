@@ -1,4 +1,4 @@
-## Events Exercise
+## Events Exercises
 
 ## Part 1
 

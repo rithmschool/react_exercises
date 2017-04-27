@@ -1,4 +1,4 @@
-## Component Lifecycle Exercise
+## Component Lifecycle Exercises
 
 ### Part 1 
 
