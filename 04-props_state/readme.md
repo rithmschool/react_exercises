@@ -1,4 +1,4 @@
-## Props + State Exercise
+## Props + State Exercises
 
 ## Part 1
 

@@ -1,4 +1,4 @@
-## JSX Exercise
+## JSX Exercises
 
 ### Part 1
 

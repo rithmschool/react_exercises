@@ -1,4 +1,4 @@
-## Introduction to React Exercise
+## Introduction to React Exercises
 
 ### Part 1
 

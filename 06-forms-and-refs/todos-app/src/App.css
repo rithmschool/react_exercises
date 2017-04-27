@@ -1,0 +1,11 @@
+
+
+.App-header {
+  width: 100%;
+  height: 150px;
+  background-color: #ffe796;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6em;
+}

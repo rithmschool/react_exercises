@@ -1,4 +1,4 @@
-## Webpack Exercise
+## Webpack Exercises
 
 ### Part 1 
 
