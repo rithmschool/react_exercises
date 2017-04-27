@@ -7,7 +7,7 @@ class App extends Component {
     this.handleLinkClick = this.handleLinkClick.bind(this);
     this.handleButtonClick = this.handleButtonClick.bind(this);
     this.state = { linksDisabled: false };
-  } 
+  }
 
   handleButtonClick() {
     this.setState({
@@ -17,7 +17,7 @@ class App extends Component {
 
   handleLinkClick(e) {
     if (this.state.linksDisabled) e.preventDefault();
-  } 
+  }
 
   render() {
     let links = [
@@ -28,20 +28,21 @@ class App extends Component {
       {
         href: 'https://facebook.github.io/react/',
         text: 'React Docs'
-      }, 
+      },
       {
         href: 'https://www.codewars.com/dashboard',
         text: 'CodeWars'
       }
-    ].map(link => (
+    ].map((link,idx) => (
       <CustomLink
+        key={idx}
         href={link.href}
         text={link.text}
         handleClick={this.handleLinkClick}
       />
     ))
 
-    let buttonText = this.state.linksDisabled ? 
+    let buttonText = this.state.linksDisabled ?
       "Enable links" :
       "Disable Links";
 
