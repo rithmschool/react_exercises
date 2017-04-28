@@ -20,7 +20,7 @@ export default class TodoList extends Component {
   handleAdd(newTodo) {
     this.setState({
       latestId: ++this.state.latestId,
-      todos: this.state.todos.concat({...newTodo, isComplete: false, id: this.state.latestId})
+      todos: this.state.todos.concat({...newTodo, isShowingEditForm: false, isComplete: false, id: this.state.latestId})
     }, () => {
       localStorage.setItem('todos', JSON.stringify(this.state.todos))
     });
@@ -29,7 +29,7 @@ export default class TodoList extends Component {
   handleEdit(updatedTodo, id){
     let newTodos = this.state.todos.map(todo => {
       if (id === todo.id) {
-        todo = Object.assign({},todo,updatedTodo)
+        todo = Object.assign({},todo,updatedTodo, {isShowingEditForm: false})
       }
       return todo
     });
@@ -45,10 +45,11 @@ export default class TodoList extends Component {
     });
   }
 
-  toggleComplete(updatedTodo, id, complete){
+  toggle(id, field, bool){
+    let obj = field === 'complete' ? {isComplete: bool} : {isShowingEditForm: bool};
     let newTodos = this.state.todos.map(todo => {
       if (id === todo.id) {
-        todo = Object.assign({},todo,updatedTodo, {isComplete: complete})
+        todo = Object.assign({},todo, obj)
       }
       return todo
     });
@@ -66,8 +67,10 @@ export default class TodoList extends Component {
           description={todo.description}
           handleDelete={this.handleDelete.bind(this, todo.id)}
           handleEdit={this.handleEdit}
-          toggleComplete={this.toggleComplete.bind(this,todo, todo.id)}
+          toggleComplete={this.toggle.bind(this,todo.id)}
           isComplete={todo.isComplete}
+          toggleEditForm={this.toggle.bind(this,todo.id)}
+          isShowingEditForm={todo.isShowingEditForm}
         />
       ));
 

@@ -5,63 +5,44 @@ import TodoForm from './TodoForm'
 export default class Todo extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      complete: this.props.isComplete === false ? false : true,
-      editFormShowing: false
-    };
     this.showEditForm = this.showEditForm.bind(this);
     this.handleEdit = this.handleEdit.bind(this);
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if(nextProps.isComplete === false){
-      this.setState({
-        complete: nextProps.isComplete
-      })
-    }
+    this.handleComplete = this.handleComplete.bind(this);
   }
 
   handleComplete() {
-    this.setState({
-        complete: !this.state.complete
-    }, () => {
-      this.props.toggleComplete(this.state.complete)
-    });
+    this.props.toggleComplete('complete', !this.props.isComplete)
   }
 
   showEditForm() {
-    this.setState({
-      editFormShowing: !this.state.editFormShowing
-    });
+    this.props.toggleEditForm('editForm', !this.props.isShowingEditForm)
   }
 
   handleEdit(updatedTodo) {
     this.props.handleEdit(updatedTodo, this.props.id)
-    this.setState({
-      editFormShowing: !this.state.editFormShowing
-    });
   }
 
   render() {
-    let complete = this.state.complete ? "complete" : "";
-    let buttonText = this.state.complete ? "incomplete" : "complete";
+    let {isComplete, title, description, handleDelete, isShowingEditForm} = this.props
+    let complete = isComplete ? "complete" : "";
+    let buttonText = isComplete ? "incomplete" : "complete";
 
-    let editForm = this.state.editFormShowing ? <TodoForm title={this.props.title} description={this.props.description} editTodo={this.handleEdit}/> : '';
+    let editForm = isShowingEditForm ? <TodoForm title={title} description={description} editTodo={this.handleEdit}/> : '';
 
     return (
       <div className={`Todo ${complete}`}>
-        <h3>{this.props.title}</h3>
-        <p>{this.props.description}</p>
+        <h3>{title}</h3>
+        <p>{description}</p>
         <div className="button-wrapper">
           <button
             className="complete-button"
-            onClick={this.handleComplete.bind(this)}
+            onClick={this.handleComplete}
           >
             Mark as {buttonText}
           </button>
           <button
             className="remove-button"
-            onClick={this.props.handleDelete}
+            onClick={handleDelete}
           >
             Delete this todo
           </button>
