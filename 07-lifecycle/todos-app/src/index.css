@@ -1,0 +1,19 @@
+body {
+  margin: 0;
+  font-family: Helvetica, sans-serif;
+}
+
+button:active,
+button:focus,
+input[type="submit"]:focus {
+  outline: none;
+}
+
+button,
+input[type="submit"] {
+  margin: 0 5px;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  font-size: 0.8em;
+}

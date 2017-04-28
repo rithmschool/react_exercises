@@ -1,0 +1,56 @@
+.Todo {
+  width: 60%;
+  border: 3px solid #673ab7;
+  margin: 40px auto;
+  background-color: #f7f6ff;
+  border-radius: 6px;
+  padding: 15px;
+}
+
+.Todo h3 {
+  margin: 0;
+  text-align: center;
+}
+
+.button-wrapper {
+  text-align: right;
+}
+
+.button-wrapper button:hover {
+  cursor: pointer;
+}
+
+.complete-button {
+  background-color: #2196f3;
+}
+
+.complete-button:hover {
+  background-color: #0c78cd;
+}
+
+.remove-button {
+  background-color: #e91e63;
+}
+
+.remove-button:hover {
+  background-color: #bf0b48;
+}
+
+.edit-button {
+  background-color: #F3EB0C;
+}
+
+.edit-button:hover {
+  background-color: #b3bf0e;
+}
+
+.complete h3,
+.complete p {
+  text-decoration: line-through;
+  color: #888;
+}
+
+.Todo.complete {
+  background-color: #DDD;
+  border: 3px solid #888;
+}
