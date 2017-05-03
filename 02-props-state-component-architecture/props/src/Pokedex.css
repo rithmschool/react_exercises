@@ -1,0 +1,18 @@
+.container {
+  margin: 0 auto;
+  width: 80%;
+}
+
+.poke-wrapper {
+  text-align: center;
+}
+
+.poke-container {
+  margin: 0 auto;
+  display: inline-block;
+  text-align: center;
+}
+
+.title {
+  text-align: center;
+}

@@ -1,0 +1,18 @@
+.card {
+  display: inline-block;
+  margin: 20px;
+  padding: 15px;
+  min-width: 142px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  text-align: center;
+  background-color: lightgrey;
+}
+
+.card-name {
+  color: blue;
+}
+
+.type {
+  color: black;
+}
