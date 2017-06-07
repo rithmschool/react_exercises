@@ -16,4 +16,4 @@ All of your components should be created with pure JavaScript and HTML.
 2. Create an `App` component that renders at least three tweets.
 3. Style your `Tweet` component!
 
-All of your components should be created with pure JavaScript and HTML.
+All of your components should be created with pure JavaScript and HTML - no JSX!
