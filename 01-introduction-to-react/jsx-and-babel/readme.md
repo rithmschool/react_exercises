@@ -10,6 +10,6 @@ Create a component called `Person`. Inside of this component, render a `p` tag w
 
 If the person is over 21 years old, display an additional `h3` that says "have a drink!". Otherwise, display an `h3` that says "you must be 21". If the person's name is longer than 8 characters, only display the first six characters of their name.
 
-Inside of your Person component, create a variable called hobbies which is an array of hobbies. Your Person component should list each one of these hobbies as an `li`. 
+Add a prop called hobbies to your `Person` component that accepts an array of hobbies (an array of strings).  Your Person component should list each one of these hobbies as an `li`. 
 
 Finally, render at least three copies of the `Person` component on the page.
