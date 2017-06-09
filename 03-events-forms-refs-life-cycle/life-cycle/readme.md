@@ -12,4 +12,4 @@ Add another component to your Todo App called `EditTodoForm`, which renders a fo
 
 Depending on the UI which you choose, you **may** have to use a few lifecycle hooks to ensure that your application works as expected.
 
-As a bonus, allow your todos to be marked as completed and as a super bonus, store your results in localStorage! When using localStorage, you **will** need to use a life cycle method in order for this to work properly.
+As a bonus, store your todos in localStorage! When using localStorage, you **will** need to use a life cycle method in order for this to work properly.
