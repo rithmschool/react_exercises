@@ -8,8 +8,7 @@ export default class App extends Component {
     var boxes = [];
     const numBoxes = 24;
     for (var i = 0; i < numBoxes; i++) {
-      let randomIndex = Math.floor(Math.random() * this.props.allColors.length);
-      let randomColor = this.props.allColors[randomIndex];
+      let randomColor = this.getRandomColor();
       boxes.push({
         id: i,
         color: randomColor
@@ -20,13 +19,16 @@ export default class App extends Component {
     setInterval(() => {
       const newBoxes = this.state.boxes.slice();
       const randomBoxIndex = Math.floor(Math.random() * newBoxes.length);
-      const colorIndex = Math.floor(Math.random() * this.props.allColors.length);
-      const randomColor = this.props.allColors[colorIndex];
-      newBoxes[randomBoxIndex].color = randomColor;
+      newBoxes[randomBoxIndex].color = this.getRandomColor();
       this.setState({
         boxes: newBoxes
       })
     }, 300);
+  }
+
+  getRandomColor() {
+    let colorIndex = Math.floor(Math.random() * this.props.allColors.length);
+    return this.props.allColors[colorIndex];
   }
 
   render() {
