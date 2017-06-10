@@ -18,7 +18,10 @@ class App extends Component {
       url: url
     })
     this.setState({ giphys });
+  }
 
+  clear() {
+    this.setState ( {giphys: []} )
   }
 
   render() {
@@ -36,6 +39,11 @@ class App extends Component {
           <h2>Giphy Party!</h2>
         </div>
         <NewGiphyForm handleAdd={this.addGiphy.bind(this)}/>
+        <div>
+          <button className="clear" type="submit" onClick={this.clear.bind(this)}>
+            <span>Clear</span>
+          </button>
+        </div>
         {giphys}
       </div>
     );
