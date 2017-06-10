@@ -5,8 +5,8 @@ class Div extends Component {
 
     return (
       <div style={Object.assign(
-          { width: this.props.width }, 
-          { height: this.props.height }, 
+          { width: this.props.width + "px"}, 
+          { height: this.props.height + "px"}, 
           { backgroundColor: this.props.backgroundColor }
         )}
       />

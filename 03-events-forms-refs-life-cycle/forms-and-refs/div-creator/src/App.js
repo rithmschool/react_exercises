@@ -37,7 +37,7 @@ class App extends Component {
       <div className="App">
         <div className="App-header">
           <h2>Add a div, any div!</h2>
-          <NewDivForm handleAdd={this.addDiv.bind(this)} key={this.props.id}/>
+          <NewDivForm handleAdd={this.addDiv.bind(this)}/>
         </div>
         
         {divs}
