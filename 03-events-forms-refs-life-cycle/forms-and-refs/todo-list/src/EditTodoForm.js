@@ -8,8 +8,7 @@ class EditTodoForm extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.state = {
-      content: '',
-      tempContent: this.props.content,
+      content: this.props.content,
     }
   }
 
@@ -21,10 +20,9 @@ class EditTodoForm extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.handleEdit(this.state.tempContent, this.props.id);
+    this.props.handleEdit(this.state.content, this.props.id);
     this.setState({
-      content: this.state.tempContent,
-      tempContent: '',
+      content: this.state.content
     })
   }
 
@@ -32,15 +30,15 @@ class EditTodoForm extends Component {
     return (
       <form onSubmit={this.handleSubmit} id={this.props.id}>
         <input
-          name="tempContent"
+          name="content"
           type="text"
           onChange={this.handleChange}
           placeholder={this.props.content}
-          value={this.state.tempContent}
+          value={this.state.content}
         />
         <span className="space">&nbsp;</span>
         <button type="submit">
-          <span className="glyphicon glyphicon-save" ></span>
+          <span className="glyphicon glyphicon-ok" ></span>
         </button>
       </form>
     )

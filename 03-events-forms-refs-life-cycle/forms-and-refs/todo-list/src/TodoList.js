@@ -54,10 +54,9 @@ class TodoList extends Component {
 
   addTodo(newTodo) {
     let curTodos = this.state.todos;
-    if (curTodos.length === 0) {
-      var newKey = 0;
-    } else {
-      var newKey = curTodos[curTodos.length - 1].key + 1;
+    var newKey = 0;
+    if (curTodos.length >0) {
+      newKey = curTodos[curTodos.length - 1].key + 1;
     }
     curTodos.push({
       key: newKey,
@@ -88,6 +87,7 @@ class TodoList extends Component {
             handleEdit={this.editTodo.bind(this)}
             id={i}
             content={item.content}
+            key={i}
           />
         )
       } else {
@@ -108,7 +108,7 @@ class TodoList extends Component {
 
     return (
       <div>
-        <NewTodoForm handleAdd={this.addTodo.bind(this)}/>
+        <NewTodoForm handleAdd={this.addTodo.bind(this)} key={this.props.id}/>
         <ul>
           {todos}
         </ul>

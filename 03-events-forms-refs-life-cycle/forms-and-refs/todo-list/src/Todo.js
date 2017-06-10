@@ -14,7 +14,7 @@ class Todo extends Component {
 
   render() {
 
-    var star, check, remove, button, editTodoForm;
+    var star, check, remove, button;
 
 
     if (this.props.type === "important") {

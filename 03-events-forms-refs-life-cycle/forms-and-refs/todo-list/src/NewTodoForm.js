@@ -9,7 +9,6 @@ class NewTodoForm extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.state = {
       content: '',
-      tempContent: ''
     }
   }
 
@@ -21,10 +20,9 @@ class NewTodoForm extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.handleAdd(this.state.tempContent);
+    this.props.handleAdd(this.state.content);
     this.setState({
-      content: this.state.tempContent,
-      tempContent: ''
+      content: ''
     })
   }
 
@@ -33,11 +31,11 @@ class NewTodoForm extends Component {
       <form onSubmit={this.handleSubmit} id={this.props.id}>
         
         <input
-          name="tempContent"
+          name="content"
           type="text"
           onChange={this.handleChange}
           placeholder="Buy milk"
-          value={this.state.tempContent}
+          value={this.state.content}
         />
         <span className="space">&nbsp;</span>
         <button type="submit">
