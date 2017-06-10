@@ -28,6 +28,12 @@ li:nth-child(odd) {
   font-size: 1.5rem;
 }
 
+.glyphicon-pencil {
+  color: gray;
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+}
+
 .btn {
   background-color: inherit;
 }

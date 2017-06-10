@@ -5,46 +5,37 @@ class EditTodoForm extends Component {
   
   constructor(props) {
     super(props)
-    this.handleEditChange = this.handleEditChange.bind(this);
-    this.handleEditSubmit = this.handleEditSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
     this.state = {
       content: '',
-      tempContent: '',
-      status: '',
-      tempStatus: '',
-      type: '',
-      tempType: ''
+      tempContent: this.props.content,
     }
   }
 
-  handleEditChange(e) {
+  handleChange(e) {
     this.setState({
       [e.target.name]: e.target.value
     });
   }
 
-  handleEditSubmit(e) {
+  handleSubmit(e) {
     e.preventDefault();
-    this.props.handleEdit(this.state.tempContent, this.state.tempStatus, this.state.tempType);
+    this.props.handleEdit(this.state.tempContent, this.props.id);
     this.setState({
       content: this.state.tempContent,
       tempContent: '',
-      status: this.state.tempStatus,
-      tempStatus: '',
-      type: this.state.tempType,
-      tempType: ''
     })
   }
 
   render() {
     return (
-      <form onSubmit={this.handleEditSubmit} id={this.props.id}>
-        
+      <form onSubmit={this.handleSubmit} id={this.props.id}>
         <input
           name="tempContent"
           type="text"
-          onChange={this.handleEditChange}
-          placeholder="Buy milk"
+          onChange={this.handleChange}
+          placeholder={this.props.content}
           value={this.state.tempContent}
         />
         <span className="space">&nbsp;</span>

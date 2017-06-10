@@ -5,21 +5,21 @@ class NewTodoForm extends Component {
   
   constructor(props) {
     super(props)
-    this.handleNewChange = this.handleNewChange.bind(this);
-    this.handleNewSubmit = this.handleNewSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
     this.state = {
       content: '',
       tempContent: ''
     }
   }
 
-  handleNewChange(e) {
+  handleChange(e) {
     this.setState({
       [e.target.name]: e.target.value
     });
   }
 
-  handleNewSubmit(e) {
+  handleSubmit(e) {
     e.preventDefault();
     this.props.handleAdd(this.state.tempContent);
     this.setState({
@@ -30,12 +30,12 @@ class NewTodoForm extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleNewSubmit} id={this.props.id}>
+      <form onSubmit={this.handleSubmit} id={this.props.id}>
         
         <input
           name="tempContent"
           type="text"
-          onChange={this.handleNewChange}
+          onChange={this.handleChange}
           placeholder="Buy milk"
           value={this.state.tempContent}
         />

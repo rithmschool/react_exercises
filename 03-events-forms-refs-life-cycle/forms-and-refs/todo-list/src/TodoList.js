@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Todo from './Todo';
 import NewTodoForm from './NewTodoForm';
+import EditTodoForm from "./EditTodoForm";
 import "./TodoList.css"
 
 class TodoList extends Component {
@@ -43,37 +44,71 @@ class TodoList extends Component {
     }
   }
 
+  showEditForm(key) {
+    let curTodos = this.state.todos;
+    curTodos[key].edit = true;
+    this.setState({
+      todos: curTodos 
+    })
+  }
+
   addTodo(newTodo) {
     let curTodos = this.state.todos;
+    if (curTodos.length === 0) {
+      var newKey = 0;
+    } else {
+      var newKey = curTodos[curTodos.length - 1].key + 1;
+    }
     curTodos.push({
+      key: newKey,
       content: newTodo,
       status: "notDone",
-      type: null
+      type: null,
+      edit: false
     })
     this.setState({
       todos: curTodos 
     })
   }
 
+  editTodo(newContent, key) {
+    let curTodos = this.state.todos;
+    curTodos[key].content = newContent;
+    curTodos[key].edit = false;
+    this.setState({ todos:curTodos })
+  }
+
   render() {
     
-    const todos = this.state.todos.map((item, i) => (
-      <Todo 
-        key={i} 
-        content={item.content}
-        status={item.status}
-        type={item.type}
-        handleComplete={this.completeItem.bind(this, i)}
-        handleDelete={this.deleteItem.bind(this, i)}
-        handleStar={this.starItem.bind(this, i)}
-      />
-    ))
+    const todos = this.state.todos.map((item, i) => {
+      // if editing 'item', add EditTodoForm
+      if(item.edit === true) {
+        return ( 
+          <EditTodoForm 
+            handleEdit={this.editTodo.bind(this)}
+            id={i}
+            content={item.content}
+          />
+        )
+      } else {
+        return (
+          <Todo 
+            key={i} 
+            content={item.content}
+            status={item.status}
+            type={item.type}
+            handleComplete={this.completeItem.bind(this, i)}
+            handleDelete={this.deleteItem.bind(this, i)}
+            handleStar={this.starItem.bind(this, i)}
+            handleShowEdit={this.showEditForm.bind(this, i)}
+          />
+        )
+      }
+    })
 
     return (
       <div>
-        <NewTodoForm
-          handleAdd={this.addTodo.bind(this)}
-        />
+        <NewTodoForm handleAdd={this.addTodo.bind(this)}/>
         <ul>
           {todos}
         </ul>

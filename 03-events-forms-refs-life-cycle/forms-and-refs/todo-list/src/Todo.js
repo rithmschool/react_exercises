@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import "./Todo.css"
-import EditTodoForm from "./EditTodoForm";
 
 class Todo extends Component {
 
@@ -11,30 +10,7 @@ class Todo extends Component {
       status: this.props.status,
       type: this.props.type
     }
-  }
-
-  handleChange(e) {
-    this.setState({
-      [e.target.name]: e.target.value
-    });
-  }
-
-  handleSubmit(e) {
-    e.preventDefault();
-    this.props.handleAdd(this.state.tempContent);
-    this.setState({
-      content: this.state.tempContent,
-      tempContent: ''
-    })
-  }
-
-  editTodo(newContent, newStatus, newType) {
-    this.setState({
-      content: newContent,
-      status: newStatus,
-      type: newType 
-    })
-  }
+  }  
 
   render() {
 
@@ -66,24 +42,18 @@ class Todo extends Component {
         </button>
     }
 
-    editTodoForm = 
-      <EditTodoForm
-        handleEdit={this.editTodo.bind(this)}
-      />
-
     return (
-      <div>
-        <li className={this.props.status}>
-          <button className="btn btn-primary-outline" onClick={this.props.handleComplete}>
-            <span className={check}></span>
-          </button>
-          {star}
-          <span>{this.props.content}</span>
-          {button}
-        </li>
-        {editTodoForm}
-      </div>
-
+      <li className={this.props.status}>
+        <button className="btn btn-primary-outline" onClick={this.props.handleComplete}>
+          <span className={check}></span>
+        </button>
+        {star}
+        <span>{this.props.content}</span>
+        {button}
+        <button className="btn btn-primary-outline" onClick={this.props.handleShowEdit}>
+          <span className="glyphicon glyphicon-pencil"></span>
+        </button>
+      </li>
     )
   }
 }
