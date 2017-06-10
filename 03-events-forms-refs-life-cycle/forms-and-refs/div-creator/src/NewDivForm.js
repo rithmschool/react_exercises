@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import "./NewDivForm.css";
 
 class NewDivForm extends Component {
 
@@ -32,6 +33,7 @@ class NewDivForm extends Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
+        <label for="width">Width: </label>
         <input
           name="width"
           type="text"
@@ -40,6 +42,7 @@ class NewDivForm extends Component {
           value={this.state.width}
         />
         <span>&nbsp;</span>
+        <label for="height">Height: </label>
         <input
           name="height"
           type="text"
@@ -48,6 +51,7 @@ class NewDivForm extends Component {
           value={this.state.height}
         />
         <span>&nbsp;</span>
+        <label for="backgroundColor">Color: </label>
         <input
           name="backgroundColor"
           type="text"

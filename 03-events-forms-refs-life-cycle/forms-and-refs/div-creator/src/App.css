@@ -3,10 +3,12 @@
 }
 
 .App-header {
-  background-color: #222;
+  background-color: white;
   height: 70px;
   padding: 20px;
-  color: white;
+  padding-bottom: 40px;
+  color: gray;
+  border-bottom: black solid;
 }
 
 .App-intro {

@@ -8,11 +8,7 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      divs: [{
-        width: 200,
-        height: 400,
-        backgroundColor: "lightgray"
-      }]
+      divs: []
     }
   }
 
@@ -41,8 +37,9 @@ class App extends Component {
       <div className="App">
         <div className="App-header">
           <h2>Add a div, any div!</h2>
+          <NewDivForm handleAdd={this.addDiv.bind(this)} key={this.props.id}/>
         </div>
-        <NewDivForm handleAdd={this.addDiv.bind(this)} key={this.props.id}/>
+        
         {divs}
       </div>
     );
