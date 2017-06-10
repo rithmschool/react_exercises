@@ -1,0 +1,23 @@
+.square {
+  display: inline-block;
+  width: 150px;
+  height: 150px;
+}
+
+button {
+  border-radius: 5px;
+  margin: 10px; 
+  border: none;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+.delete {
+  background-color: pink;
+}
+
+.new {
+  background-color: lightgreen;
+}
