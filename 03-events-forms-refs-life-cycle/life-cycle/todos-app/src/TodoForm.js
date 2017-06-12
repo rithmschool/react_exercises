@@ -5,8 +5,8 @@ export default class TodoForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: this.props.title ? this.props.title : '',
-      description: this.props.description ? this.props.description : ''
+      title: this.props.title || '',
+      description: this.props.description || ''
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -20,7 +20,7 @@ export default class TodoForm extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.addTodo ? this.props.addTodo(this.state) : this.props.editTodo(this.state);
+    this.props.handleSubmit(this.state);
     this.setState({
       title: '',
       description: ''
@@ -28,7 +28,7 @@ export default class TodoForm extends Component {
   }
 
   render() {
-    let val = this.props.title ? "Edit this todo!" : "Add this todo";
+    let val = this.props.title ? "Edit this todo!" : "Add this todo!";
     return (
       <form onSubmit={this.handleSubmit}>
         <div className="input-area">

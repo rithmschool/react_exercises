@@ -23,11 +23,22 @@ export default class Todo extends Component {
   }
 
   render() {
-    let {isComplete, title, description, handleDelete, isShowingEditForm} = this.props
+    let { 
+      isComplete, 
+      title, 
+      description, 
+      handleDelete, 
+      isShowingEditForm
+    } = this.props;
     let complete = isComplete ? "complete" : "";
     let buttonText = isComplete ? "incomplete" : "complete";
-
-    let editForm = isShowingEditForm ? <TodoForm title={title} description={description} editTodo={this.handleEdit}/> : '';
+    let editForm = isShowingEditForm ? 
+      <TodoForm 
+        title={title} 
+        description={description} 
+        handleSubmit={this.handleEdit}
+      /> : 
+      null;
 
     return (
       <div className={`Todo ${complete}`}>

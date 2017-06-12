@@ -10,6 +10,10 @@ input[type="submit"] {
   background-color: #6cf26c;
 }
 
+input[type="submit"]:hover {
+  background-color: #59c259;
+}
+
 form {
   margin: 30px auto;
   width: 60%;
@@ -18,7 +22,6 @@ form {
 .Todo form {
   width: 100%;
 }
-
 
 .input-area {
   display: inline-block;

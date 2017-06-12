@@ -16,10 +16,6 @@
   text-align: right;
 }
 
-.button-wrapper button:hover {
-  cursor: pointer;
-}
-
 .complete-button {
   background-color: #2196f3;
 }

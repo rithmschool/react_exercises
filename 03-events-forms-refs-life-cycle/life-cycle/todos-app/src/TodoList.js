@@ -10,38 +10,42 @@ export default class TodoList extends Component {
   }
 
   componentWillMount(){
-    let storedTodos = JSON.parse(localStorage.getItem('todos'));
-    this.setState({
-      latestId: storedTodos && storedTodos.length ? storedTodos[storedTodos.length-1].id : 0,
-      todos: storedTodos || []
-    })
+    let todos = JSON.parse(localStorage.getItem('todos')) || [];
+    let latestId = +JSON.parse(localStorage.getItem('latestId')) || 0;
+    this.setState({ todos, latestId });
   }
 
   handleAdd(newTodo) {
     this.setState({
       latestId: ++this.state.latestId,
-      todos: this.state.todos.concat({...newTodo, isShowingEditForm: false, isComplete: false, id: this.state.latestId})
+      todos: this.state.todos.concat({
+        ...newTodo, 
+        isShowingEditForm: false, 
+        isComplete: false, 
+        id: this.state.latestId
+      })
     }, () => {
-      localStorage.setItem('todos', JSON.stringify(this.state.todos))
+      localStorage.setItem('todos', JSON.stringify(this.state.todos));
+      localStorage.setItem('latestId', this.state.latestId);
     });
   }
 
   handleEdit(updatedTodo, id){
     let newTodos = this.state.todos.map(todo => {
       if (id === todo.id) {
-        todo = Object.assign({},todo,updatedTodo, {isShowingEditForm: false})
+        todo = Object.assign({},todo,updatedTodo, {isShowingEditForm: false});
       }
-      return todo
+      return todo;
     });
     this.setState({todos: newTodos}, () => {
-      localStorage.setItem('todos', JSON.stringify(this.state.todos))
+      localStorage.setItem('todos', JSON.stringify(this.state.todos));
     });
   }
 
   handleDelete(idx) {
     let newTodos = this.state.todos.filter(t => t.id !== idx);
     this.setState({todos: newTodos}, () => {
-      localStorage.setItem('todos', JSON.stringify(this.state.todos))
+      localStorage.setItem('todos', JSON.stringify(this.state.todos));
     });
   }
 
@@ -49,19 +53,19 @@ export default class TodoList extends Component {
     let obj = field === 'complete' ? {isComplete: bool} : {isShowingEditForm: bool};
     let newTodos = this.state.todos.map(todo => {
       if (id === todo.id) {
-        todo = Object.assign({},todo, obj)
+        todo = Object.assign({},todo, obj);
       }
-      return todo
+      return todo;
     });
     this.setState({todos: newTodos}, () => {
-      localStorage.setItem('todos', JSON.stringify(this.state.todos))
+      localStorage.setItem('todos', JSON.stringify(this.state.todos));
     });
   }
 
   render(){
     const todos = this.state.todos.map((todo,idx) => (
         <Todo
-          key={idx}
+          key={todo.id}
           id={todo.id}
           title={todo.title}
           description={todo.description}
@@ -76,7 +80,7 @@ export default class TodoList extends Component {
 
     return (
         <div>
-          <TodoForm addTodo={this.handleAdd}/>
+          <TodoForm handleSubmit={this.handleAdd}/>
           {todos.reverse()}
         </div>
       );
