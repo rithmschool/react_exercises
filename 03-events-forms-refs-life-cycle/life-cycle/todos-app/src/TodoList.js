@@ -18,12 +18,12 @@ export default class TodoList extends Component {
   handleAdd(newTodo) {
     this.setState({
       latestId: ++this.state.latestId,
-      todos: this.state.todos.concat({
+      todos: [{
         ...newTodo, 
         isShowingEditForm: false, 
         isComplete: false, 
         id: this.state.latestId
-      })
+      }, ...this.state.todos]
     }, () => {
       localStorage.setItem('todos', JSON.stringify(this.state.todos));
       localStorage.setItem('latestId', this.state.latestId);
@@ -81,7 +81,7 @@ export default class TodoList extends Component {
     return (
         <div>
           <TodoForm handleSubmit={this.handleAdd}/>
-          {todos.reverse()}
+          {todos}
         </div>
       );
   }
