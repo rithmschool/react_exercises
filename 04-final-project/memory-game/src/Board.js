@@ -10,9 +10,7 @@ class Board extends Component {
     this.reset = this.reset.bind(this);
     this.state = {
       cards: this.props.cards,
-      endGameCounter: this.props.endGameCounter,
       turns: this.props.turns,
-      prevColor: this.props.prevColor,
       disabled: this.props.disabled
     }
   }
@@ -21,62 +19,77 @@ class Board extends Component {
     // check if card is enabled and face down
     if(this.state.disabled === false && this.state.cards[id].side === "down") {
 
-      // actually flip the card on the screen and upate state
-      let tempState = this.flipCard(id);
-        
-      // if it's an even turn, check for a match
-      let curColor = this.state.cards[id].color;
-      if(tempState.endGameCounter % 2 === 0) {
-        // check for a match
-        this.checkForMatch(curColor, this.state.prevColor, tempState);
-      
-      } else {
-        // set state and update previous color
-        this.setState({ 
-          prevColor: curColor
-        });
-      }
+      // actually flip the card on the screen
+      this.flipCard(id);
     }
   }
 
   flipCard(id) {
+    // flip card up in new array
     let cards = this.state.cards.slice();
     if (cards[id].side === "down") {
       cards[id].side = "up";
     }
-    let endGameCounter = this.state.endGameCounter + 1;
-    let tempState = {};
-    tempState.cards = cards;
-    tempState.endGameCounter = endGameCounter;
-    this.setState({cards});
-    return tempState;
+
+    // if there are two unmatched cards up, check for a match
+    let curColor = this.state.cards[id].color;
+
+    // if there are two cards up:
+    let numCardsUp = cards.filter((card) => {
+      return card.side === "up";
+    });
+
+    if(numCardsUp.length === 2) {
+      // check for a match
+      this.checkForMatch(cards);
+    } else {
+      // set state to flip card up
+      this.setState({ cards });
+    }
   }
 
-  checkForMatch(curColor, prevColor, tempState) {
-    if(curColor === prevColor) {
-      // check for win (keep both cards up and don't lose a turn)
-      this.checkForWin(tempState);
-      debugger
-      this.setState ( {
-        endGameCounter: tempState.endGameCounter
+  checkForMatch(cards) {
+    // if the two cards that are up have matching colors
+    var colorsToMatch = [];
+    this.state.cards.forEach((card) => {
+      if (card.side === "up") {
+        colorsToMatch.push(card.color);
+      }
+    });
+
+    if (colorsToMatch[0] === colorsToMatch[1]) {
+      let cards = this.state.cards.map((card) => {
+        if (card.side === "up") {
+          card.side = "matched";
+        }
+        return card
       });
+  
+      // update state
+      this.setState( {cards}, () => this.checkForWin(this.state.cards));
+      
     } else {
       // disable cards
-      tempState.disabled = true;
+      this.setState( { 
+        disabled: true
+      } );
 
       // check for loss
       this.checkForLoss();
 
       // flip cards back after 1 second
       setTimeout( () => {
-        this.flipCardsBack(curColor, prevColor, tempState);
+        this.flipCardsBack(cards);
       },1000);
     }
-    return tempState;
   }
 
-  checkForWin(tempState) {
-    if(tempState.endGameCounter === numCards) {
+  checkForWin(cards) {
+    // if all cards are matched
+    let numCardsMatched = cards.filter((card) => {
+      return card.side === "matched";
+    });
+    if (numCardsMatched.length === numCards) {
       this.youWin();
     }
   }
@@ -88,10 +101,10 @@ class Board extends Component {
     }
   }
 
-  flipCardsBack(curColor, prevColor, tempState) {
-    // flip back the last two cards (any cards with curColor or prevColor)
-    tempState.cards.forEach((card, i) => {
-      if (card.color === curColor || card.color === prevColor) {
+  flipCardsBack(cards) {
+    // flip back any "up" cards
+    cards.forEach((card, i) => {
+      if (card.side === "up") {
         card.side = "down";
       }
     });
@@ -99,10 +112,8 @@ class Board extends Component {
     // lose a turn and reset prevColor and endGameCounter
     this.setState( {
       turns: this.state.turns - 1, 
-      prevColor: "lightgray",
       disabled: false,
-      cards: tempState.cards,
-      endGameCounter: tempState.endGameCounter - 2
+      cards: cards
     } );
   }
 
@@ -152,8 +163,7 @@ class Board extends Component {
 
   render() {
 
-
-    const cards = this.state.cards.map((card, i) => (
+    let cards = this.state.cards.map((card, i) => (
       <Card 
         key={i} 
         side={card.side}
