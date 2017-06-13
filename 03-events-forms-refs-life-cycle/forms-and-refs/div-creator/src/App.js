@@ -14,11 +14,7 @@ class App extends Component {
 
   addDiv(width, height, backgroundColor) {
     let divs = this.state.divs;
-    divs.push({
-      width: width,
-      height: height,
-      backgroundColor: backgroundColor
-    })
+    divs.push( {width, height, backgroundColor} )
     this.setState({ divs });
   }
 

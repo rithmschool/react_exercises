@@ -6,24 +6,22 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.disableLinks = this.disableLinks.bind(this);
-    var anchors = [];
-    const numAnchors = 3;
-    for (var i=0; i < numAnchors; i++) {
-      anchors.push({
-        link: this.props.links[i],
+
+    let anchors = this.props.links.map( (link, i) => {
+      return {
+        link: link,
         text: this.props.texts[i]
-      })
+      };
+    });
+    this.state = { 
+      anchors: anchors,
+      status: "enabled" 
     }
-    this.state = { anchors }
   }
 
   disableLinks() {
-    let newAnchors = this.state.anchors.map((curLink) => (
-      curLink.link = "JavaScript:Void(0);"
-    ))
-    this.setState({ newAnchors });
+    this.setState({ status: "disabled" });
   }
-
 
   render() {
     
@@ -31,7 +29,8 @@ class App extends Component {
       <CustomLink
         href={curLink.link}
         text={curLink.text}
-        handleClick={this.disableLinks}
+        status={this.state.status}
+        key={i}
       />
     ))
 

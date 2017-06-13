@@ -14,9 +14,7 @@ class App extends Component {
 
   addGiphy(url) {
     let giphys = this.state.giphys;
-    giphys.push({
-      url: url
-    })
+    giphys.push({ url });
     this.setState({ giphys });
   }
 

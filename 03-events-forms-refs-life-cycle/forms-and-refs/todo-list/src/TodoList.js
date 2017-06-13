@@ -12,37 +12,59 @@ class TodoList extends Component {
     }
   }
 
-  completeItem(key) {
-    if (this.state.todos[key].status === "notDone") {
-      let newTodos = this.state.todos.slice();
-      newTodos[key].status = "done";
-      this.setState( {todos:newTodos} );
-    } else {
-      let newTodos = this.state.todos.slice();
-      newTodos[key].status = "notDone";
-      this.setState( {todos:newTodos} );
-    }
-  }
+  updateItem(key) {
+    // NEED TO ACCESS THE TYPE OF BUTTON CLICKED!!
+    // Not sure how to access it since we bound the keyword `this`
+    // Hard-coding it for now
+    let type = "star";
 
-  deleteItem(key) {
-    if (this.state.todos[key].status === "done"){
-      let newTodos = this.state.todos.slice();
-      newTodos.splice(key, 1);
-      this.setState( {todos:newTodos} );
+    let newTodos = this.state.todos.slice();
+    if (type === "complete") {
+      if (this.state.todos[key].status === "notDone") {
+        newTodos[key].status = "done";
+      } else {
+        newTodos[key].status = "notDone";
+      }
+    } else if (type === "delete") {
+      if (this.state.todos[key].status === "done") {
+        newTodos.splice(key, 1);
+      }
+    } else if (type === "star") {
+      if (this.state.todos[key].type === null) {
+        newTodos[key].type = "important";
+      } else {
+        newTodos[key].type = null;
+      }
     }
+    this.setState( {todos: newTodos} );
   }
+  // completeItem(key) {
+  //   let newTodos = this.state.todos.slice();
+  //   if (this.state.todos[key].status === "notDone") {
+  //     newTodos[key].status = "done";
+  //   } else {
+  //     newTodos[key].status = "notDone";
+  //   }
+  //   this.setState( {todos:newTodos} );
+  // }
 
-  starItem(key) {
-    if (this.state.todos[key].type === null) {
-      let newTodos = this.state.todos.slice();
-      newTodos[key].type = "important";
-      this.setState( {todos:newTodos} );
-    } else {
-      let newTodos = this.state.todos.slice();
-      newTodos[key].type = null;
-      this.setState( {todos:newTodos} );
-    }
-  }
+  // deleteItem(key) {
+  //   let newTodos = this.state.todos.slice();
+  //   if (this.state.todos[key].status === "done"){
+  //     newTodos.splice(key, 1);
+  //     this.setState( {todos:newTodos} );
+  //   }
+  // }
+
+  // starItem(key) {
+  //   let newTodos = this.state.todos.slice();
+  //   if (this.state.todos[key].type === null) {
+  //     newTodos[key].type = "important";
+  //   } else {
+  //     newTodos[key].type = null;
+  //   }
+  //   this.setState( {todos:newTodos} );
+  // }
 
   showEditForm(key) {
     let curTodos = this.state.todos;
@@ -97,9 +119,10 @@ class TodoList extends Component {
             content={item.content}
             status={item.status}
             type={item.type}
-            handleComplete={this.completeItem.bind(this, i)}
-            handleDelete={this.deleteItem.bind(this, i)}
-            handleStar={this.starItem.bind(this, i)}
+            // handleComplete={this.completeItem.bind(this, i)}
+            // handleDelete={this.deleteItem.bind(this, i)}
+            // handleStar={this.starItem.bind(this, i)}
+            handleUpdate={this.updateItem.bind(this, i)}
             handleShowEdit={this.showEditForm.bind(this, i)}
           />
         )

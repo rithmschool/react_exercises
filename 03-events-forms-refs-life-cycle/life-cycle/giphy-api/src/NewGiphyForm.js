@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import "./NewGiphyForm.css";
-// import jQuery
-import $ from './../node_modules/jquery/dist/jquery.js'; 
+// import $ from './../node_modules/jquery/dist/jquery.js'; 
 
 class NewGiphyForm extends Component {
 
@@ -22,8 +21,8 @@ class NewGiphyForm extends Component {
 
   handleAJAXCall(url) {
     var self = this;
-    $.get(url).then(function(response){
-      var imageUrl = response.data[0].images.fixed_width_small.url;
+    fetch(url).then(response => response.json()).then(data => {
+      var imageUrl = data.data[0].images.fixed_width_small.url;
       self.props.handleAdd(imageUrl);
       self.setState({
         searchTerm: ''

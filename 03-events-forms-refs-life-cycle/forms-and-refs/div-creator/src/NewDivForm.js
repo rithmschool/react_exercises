@@ -22,7 +22,8 @@ class NewDivForm extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.handleAdd(this.state.width, this.state.height, this.state.backgroundColor);
+    const {width, height, backgroundColor} = this.state;
+    this.props.handleAdd(width, height, backgroundColor);
     this.setState({
       width: '',
       height: '',

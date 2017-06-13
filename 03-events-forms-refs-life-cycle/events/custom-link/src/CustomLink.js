@@ -3,11 +3,19 @@ import './CustomLink.css';
 
 class CustomLink extends Component {
   render() {
-    
+
+    let href = this.props.href;
+    if (this.props.status === "disabled") {
+      href = "JavaScript:void(0)";
+    }
 
     return (
       <div>
-        <a href={this.props.href} target="_blank">{this.props.text}</a>
+        <a 
+          href={href} 
+          target="_blank" 
+          rel="noopener noreferrer"
+        >{this.props.text}</a>
       </div>
     )
   }
