@@ -9,7 +9,9 @@ class Score extends Component {
 
     let score;
 
-    if (this.props.turns === 0) {
+    if (this.props.win === true) {
+      score = `You win in ${this.props.totalTurns - this.props.turns} turns!`
+    } else if (this.props.turns === 0) {
       score = "You lose!"
     } else if (this.props.turns === 1) {
       score = "Careful! Only one turn remaining."

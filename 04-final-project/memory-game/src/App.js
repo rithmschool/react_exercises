@@ -11,7 +11,7 @@ class App extends Component {
         </div>
         <Board
           endGameCounter={0}
-          turns={10}
+          totalTurns={10}
           prevColor="lightgray"
           disabled={false}
         />

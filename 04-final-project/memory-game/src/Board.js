@@ -10,8 +10,9 @@ class Board extends Component {
     this.reset = this.reset.bind(this);
     this.state = {
       cards: this.props.cards,
-      turns: this.props.turns,
-      disabled: this.props.disabled
+      turns: this.props.totalTurns,
+      disabled: this.props.disabled,
+      win: false
     }
   }
 
@@ -30,9 +31,6 @@ class Board extends Component {
     if (cards[id].side === "down") {
       cards[id].side = "up";
     }
-
-    // if there are two unmatched cards up, check for a match
-    let curColor = this.state.cards[id].color;
 
     // if there are two cards up:
     let numCardsUp = cards.filter((card) => {
@@ -119,16 +117,18 @@ class Board extends Component {
 
   youWin() {
     setTimeout( () => {
-      // show you win alert
-      // show a button to play again
+      this.setState ({
+        win: true,
+        disabled: true
+      })
     }, 250); 
   }
 
   youLose() {
     // prevent card flipping
-    this.setState( {
+    this.setState({
       disabled: true
-    } )
+    })
   }
 
   reset() {
@@ -141,10 +141,9 @@ class Board extends Component {
 
     this.setState({
       cards: cards,
-      endGameCounter: this.props.endGameCounter,
-      turns: this.props.turns,
-      prevColor: this.props.prevColor,
-      disabled: this.props.disabled
+      turns: this.props.totalTurns,
+      disabled: this.props.disabled,
+      win: false
     })
   }
 
@@ -177,7 +176,11 @@ class Board extends Component {
         <div>
           {cards}
         </div>
-        <Score turns={this.state.turns}/>
+        <Score 
+          turns={this.state.turns} 
+          win={this.state.win} 
+          totalTurns={this.props.totalTurns}
+        />
         <ResetButton handleReset={this.reset}/>
       </div>
     )
