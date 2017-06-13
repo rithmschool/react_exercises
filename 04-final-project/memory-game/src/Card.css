@@ -1,0 +1,12 @@
+.card {
+  display: inline-block;
+  width: 6rem;
+  height: 10rem;
+  margin: 1rem;
+  border: black solid;
+  border-radius: 10px;
+}
+
+.card:hover {
+  cursor: pointer;
+}
