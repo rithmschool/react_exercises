@@ -153,9 +153,8 @@ class Board extends Component {
       randomIndex = Math.floor(Math.random() * curIndex);
       curIndex--;
 
-      tempVal = array[curIndex];
-      array[curIndex] = array[randomIndex];
-      array[randomIndex] = tempVal;
+      const swap = (arr, idx1, idx2) => [arr[idx1],arr[idx2]] = [arr[idx2],arr[idx1]];
+      swap(array, curIndex, randomIndex);
     }
     return array;
   }
