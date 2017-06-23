@@ -16,16 +16,15 @@ class Todo extends Component {
 
     var star, check, remove, button;
 
-
     if (this.props.type === "important") {
       star = 
         <button className="btn btn-primary-outline" onClick={this.props.handleUpdate}>
-          <span className="glyphicon glyphicon-star"></span>
+          <span className="glyphicon glyphicon-star" data-type="star"></span>
         </button>
     } else {
       star = 
         <button className="btn btn-primary-outline" onClick={this.props.handleUpdate}>
-          <span className="glyphicon glyphicon-star-empty"></span>
+          <span className="glyphicon glyphicon-star-empty"data-type="star" ></span>
         </button>
     }
 
@@ -38,20 +37,20 @@ class Todo extends Component {
       remove = "glyphicon glyphicon-remove";
       button = 
         <button className="pull-right btn btn-primary-outline" onClick={this.props.handleUpdate}>
-          <span className={remove}></span>
+          <span className={remove} data-type="delete"></span>
         </button>
     }
 
     return (
       <li className={this.props.status}>
         <button className="btn btn-primary-outline" onClick={this.props.handleUpdate}>
-          <span className={check}></span>
+          <span className={check} data-type="complete"></span>
         </button>
         {star}
         <span>{this.props.content}</span>
         {button}
         <button className="btn btn-primary-outline" onClick={this.props.handleShowEdit}>
-          <span className="glyphicon glyphicon-pencil"></span>
+          <span className="glyphicon glyphicon-pencil" data-type="complete"></span>
         </button>
       </li>
     )
