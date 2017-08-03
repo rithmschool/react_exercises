@@ -19,7 +19,8 @@ export default class App extends Component {
     setInterval(() => {
       const newBoxes = this.state.boxes.slice();
       const randomBoxIndex = Math.floor(Math.random() * newBoxes.length);
-      newBoxes[randomBoxIndex].color = this.getRandomColor();
+      newBoxes[randomBoxIndex] = Object.assign({}, newBoxes[randomBoxIndex],
+                                  {color: this.getRandomColor()});
       this.setState({
         boxes: newBoxes
       })
