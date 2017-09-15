@@ -24,10 +24,13 @@ class App extends Component {
     }
 
     setInterval(() => {
+      let newSquares = Array.from(this.state.squares);
+      let i = Math.round(Math.random() * 24);
+      newSquares[i] = { id: i, color: randomRGBValue() };
       this.setState({
-        squares: generateSquareStates()
+        squares: newSquares
       });
-    }, 1000);
+    }, 300);
   }
 
   render() {
