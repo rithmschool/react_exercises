@@ -25,7 +25,7 @@ class App extends Component {
 
     setInterval(() => {
       let newSquares = Array.from(this.state.squares);
-      let i = Math.round(Math.random() * 24);
+      let i = Math.round(Math.random() * 23);
       newSquares[i] = { id: i, color: randomRGBValue() };
       this.setState({
         squares: newSquares
