@@ -1,0 +1,10 @@
+.App {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.Square {
+  width: 200px;
+  height: 200px;
+  background-color: rgb(200, 200, 200);
+}
