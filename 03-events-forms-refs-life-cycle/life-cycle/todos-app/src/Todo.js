@@ -1,58 +1,47 @@
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import "./Todo.css";
 import TodoForm from "./TodoForm";
 
-export default class Todo extends Component {
-  constructor(props) {
-    super(props);
-    this.handleEdit = this.handleEdit.bind(this);
-  }
+const Todo = ({
+  isComplete,
+  title,
+  description,
+  handleDelete,
+  isShowingEditForm,
+  toggleComplete,
+  toggleEditForm,
+  handleEdit
+}) => {
+  let complete = isComplete ? "complete" : "";
+  let buttonText = isComplete ? "incomplete" : "complete";
+  let editForm = isShowingEditForm ? (
+    <TodoForm
+      title={title}
+      description={description}
+      handleSubmit={handleEdit}
+    />
+  ) : null;
 
-  handleEdit(updatedTodo) {
-    this.props.handleEdit(updatedTodo);
-  }
-
-  render() {
-    let {
-      isComplete,
-      title,
-      description,
-      handleDelete,
-      isShowingEditForm,
-      toggleComplete,
-      toggleEditForm
-    } = this.props;
-    let complete = isComplete ? "complete" : "";
-    let buttonText = isComplete ? "incomplete" : "complete";
-    let editForm = isShowingEditForm ? (
-      <TodoForm
-        title={title}
-        description={description}
-        handleSubmit={this.handleEdit}
-      />
-    ) : null;
-
-    return (
-      <div className={`Todo ${complete}`}>
-        <h3>{title}</h3>
-        <p>{description}</p>
-        <div className="button-wrapper">
-          <button className="complete-button" onClick={toggleComplete}>
-            Mark as {buttonText}
-          </button>
-          <button className="remove-button" onClick={handleDelete}>
-            Delete this todo
-          </button>
-          <button className="edit-button" onClick={toggleEditForm}>
-            Edit this todo
-          </button>
-          {editForm}
-        </div>
+  return (
+    <div className={`Todo ${complete}`}>
+      <h3>{title}</h3>
+      <p>{description}</p>
+      <div className="button-wrapper">
+        <button className="complete-button" onClick={toggleComplete}>
+          Mark as {buttonText}
+        </button>
+        <button className="remove-button" onClick={handleDelete}>
+          Delete this todo
+        </button>
+        <button className="edit-button" onClick={toggleEditForm}>
+          Edit this todo
+        </button>
+        {editForm}
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 Todo.propTypes = {
   id: PropTypes.number.isRequired,
@@ -72,3 +61,5 @@ Todo.defaultProps = {
   isComplete: false,
   isShowingEditForm: false
 };
+
+export default Todo;

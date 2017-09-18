@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Todo from "./Todo";
 import TodoForm from "./TodoForm";
 
-export default class TodoList extends Component {
+class TodoList extends Component {
   constructor(props) {
     super(props);
     this.handleAdd = this.handleAdd.bind(this);
@@ -92,3 +92,5 @@ export default class TodoList extends Component {
     );
   }
 }
+
+export default TodoList;

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import "./TodoForm.css";
 
-export default class TodoForm extends Component {
+class TodoForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -73,3 +73,5 @@ TodoForm.defaultProps = {
   title: "",
   description: ""
 };
+
+export default TodoForm;
