@@ -1,13 +1,14 @@
-import React, {Component} from 'react';
-import './TodoForm.css';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import "./TodoForm.css";
 
 export default class TodoForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: this.props.title || '',
-      description: this.props.description || ''
-    }
+      title: this.props.title,
+      description: this.props.description
+    };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -15,20 +16,21 @@ export default class TodoForm extends Component {
   handleChange(e) {
     this.setState({
       [e.target.name]: e.target.value
-    })
+    });
   }
 
   handleSubmit(e) {
     e.preventDefault();
     this.props.handleSubmit(this.state);
     this.setState({
-      title: '',
-      description: ''
+      title: "",
+      description: ""
     });
   }
 
   render() {
     let val = this.props.title ? "Edit this todo!" : "Add this todo!";
+    let { title, description } = this.state;
     return (
       <form onSubmit={this.handleSubmit}>
         <div className="input-area">
@@ -39,7 +41,7 @@ export default class TodoForm extends Component {
               placeholder="What do you need to do?"
               onChange={this.handleChange}
               name="title"
-              value={this.state.title}
+              value={title}
             />
           </label>
         </div>
@@ -51,12 +53,23 @@ export default class TodoForm extends Component {
               placeholder="Details, please!"
               onChange={this.handleChange}
               name="description"
-              value={this.state.description}
+              value={description}
             />
           </label>
         </div>
-        <input type="submit" value={val}/>
+        <input type="submit" value={val} />
       </form>
     );
   }
 }
+
+TodoForm.propTypes = {
+  title: PropTypes.string,
+  description: PropTypes.string,
+  handleSubmit: PropTypes.func.isRequired
+};
+
+TodoForm.defaultProps = {
+  title: "",
+  description: ""
+};
