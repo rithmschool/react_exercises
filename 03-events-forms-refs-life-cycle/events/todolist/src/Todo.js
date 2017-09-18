@@ -19,12 +19,9 @@ class Todo extends Component {
     var style = this.state.complete ? {textDecoration: 'line-through', color: 'gray', fontStyle: 'italic'} : {}
     let completeText = this.state.complete ? "Done. Click to undo" : "Mark as done";
     return (
-      <div>
-        <h4 style={style}>{this.props.title}</h4>
-        <p style={style}>{this.props.description}</p>
-        <p><button onClick={this.handleDone}>{completeText}</button></p>
-        <p><button onClick={this.props.removeTodo}>Remove</button></p>
-      </div>
+      <li className="todo-item">
+        <span className="todo-title" style={style}>{this.props.title}</span>: <span style={style}>{this.props.description}</span>&nbsp;<button onClick={this.handleDone}>{completeText}</button>&nbsp;<button onClick={this.props.removeTodo}>Remove</button>
+      </li>
       )
   }
 }
