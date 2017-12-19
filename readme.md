@@ -7,7 +7,6 @@ This repository contains the exercises for Rithm School's free [React Fundamenta
 ## React Fundamentals
 
 #### Introduction To React
-  * [Introduction](./01-introduction-to-react/intro/readme.md)
   * [JSX and Babel](./01-introduction-to-react/jsx-and-babel/readme.md)
   * [Webpack](./01-introduction-to-react/webpack/readme.md)
  
