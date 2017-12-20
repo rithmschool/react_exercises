@@ -40,32 +40,32 @@
 
 // PART 2
 
-class Tweet extends React.Component {
-	render() {
-		return (
-			<div>
-				<p className='primary-text'>{this.props.username}</p>
-				<p>{this.props.name}</p>
-				<p>{this.props.date}</p>
-				<p>{this.props.message}</p>
-			</div>
-		)
-	}
-}
+// class Tweet extends React.Component {
+// 	render() {
+// 		return (
+// 			<div>
+// 				<p className='primary-text'>{this.props.username}</p>
+// 				<p>{this.props.name}</p>
+// 				<p>{this.props.date}</p>
+// 				<p>{this.props.message}</p>
+// 			</div>
+// 		)
+// 	}
+// }
 
-class App extends React.Component {
-	render() {
-		var style = {color: 'red'};
-		return (
-			<div>
-				<p className="primary-text">This should be large blue text</p>
-				<Tweet username='thoy19' name='Trevor' date='12/20/2017' message='This is my first react tweet :))'/>
-				<Tweet username='thoy19' name='Trevor' date='12/20/2017' message='This is my first react tweet :))'/>
-				<Tweet username='thoy19' name='Trevor' date='12/20/2017' message='This is my first react tweet :))'/>
-			</div>
-		)
-	}
-}
+// class App extends React.Component {
+// 	render() {
+// 		var style = {color: 'red'};
+// 		return (
+// 			<div>
+// 				<p className="primary-text">This should be large blue text</p>
+// 				<Tweet username='thoy19' name='Trevor' date='12/20/2017' message='This is my first react tweet :))'/>
+// 				<Tweet username='thoy19' name='Trevor' date='12/20/2017' message='This is my first react tweet :))'/>
+// 				<Tweet username='thoy19' name='Trevor' date='12/20/2017' message='This is my first react tweet :))'/>
+// 			</div>
+// 		)
+// 	}
+// }
 
 
 // PART 3
@@ -74,13 +74,11 @@ class Person extends React.Component {
 	render() {
 			var name = this.props.name;
 			var age = this.props.age;
-		return (
-			<p>Learn some information about this person</p>
-			if (age >= 21) {
-				<h3>Have a drink!</h3>
-			} else {
-				<h3>You must be 21!</h3>
+			if (+age >= 21) {
+
 			}
+		return (
+		
 
 		)
 	}
@@ -91,6 +89,7 @@ class App extends React.Component {
 		return (
 			<div>
 				<Person name='Trevor' age='24'/>
+			</div>
 		)
 	}
 }
