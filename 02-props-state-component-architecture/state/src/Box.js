@@ -1,13 +1,19 @@
-import React, { Component } from 'react';
+import React from 'react';
+import styled from 'styled-components';
 
-export default class Box extends Component {
-  render() {
-    const style = {
-      width: '180px',
-      height: '180px',
-      display: 'inline-block',
-      backgroundColor: this.props.color
-    };
-    return <div style={style}></div>
+const ColorBox = styled.div`
+  width: 180px;
+  height: 180px;
+  display: inline-block;
+  background-color: ${props => props.color};
+  :hover {
+    cursor: pointer;
   }
-}
+`;
+const Box = props => {
+  return (
+    <ColorBox onClick={props.handleClick} color={props.color} id={props.id} />
+  );
+};
+
+export default Box;
