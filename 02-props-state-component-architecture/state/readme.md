@@ -4,4 +4,4 @@ For this exercise, you will create 24 components (square shaped div's) that have
 
 Your application should look like this:
 
-![Random Colors](./randomcolors.gif)
+![Random Colors](./clickcolors.gif)
