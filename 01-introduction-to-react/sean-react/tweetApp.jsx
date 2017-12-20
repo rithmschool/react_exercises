@@ -12,12 +12,12 @@ class Tweet extends React.Component {
 
 class App extends React.Component {
   render() {
-    return (
-      <div>
+    return <div>
         <h1>Tweet App</h1>
-        
-      </div>
-    );
+        <Tweet tweet="Craft beer cloud bread venmo, XOXO chambray dreamcatcher letterpress." username="diddyDad84" date="10/21/2017" />
+        <Tweet tweet="Food truck man bun franzen, authentic edison bulb lo-fi taiyaki chambray jean shorts." username="diddyDad84" date="3/12/2017" />
+        <Tweet tweet="VHS ethical cliche migas disrupt four loko. Af cloud bread whatever try-hard." username="diddyDad84" date="1/01/2017" />
+      </div>;
   }
 }
 
