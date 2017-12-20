@@ -1,10 +1,12 @@
 class Tweet extends React.Component {
 	render(){
 		return(
-			<div>
-				<h5>{this.props.username}</h5>
-				<h6>{this.props.date}</h6>   
-				<p>{this.props.message}</p>
+			<div className="message-card">
+				<span>
+					<b>{this.props.username}</b> |
+					<i>{this.props.date}</i>   
+				</span>	
+				<p className="message">{this.props.message}</p>
 			</div>
 			)
 	}

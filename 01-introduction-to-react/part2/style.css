@@ -1,11 +1,15 @@
 body {
-
-}
-
-.messages{
-
+	font-family: arial;
 }
 
 .message-card{
-	
+	border-style: solid;
+	border-width: 2px;
+	max-width: 300px;
+	padding: 20px;
 }
+
+.messages{
+	background-color: gray;
+}
+
