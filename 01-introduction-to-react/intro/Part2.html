@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>React Intro</title>
+  <style>
+    h2 {
+      background-color: darkgray;
+      padding: 10px;
+    }
+
+    .blythe {
+      color: blue;
+    }
+
+    .moxie {
+      color: red;
+    }
+
+    .whiskey {
+      color: purple;
+    }
+  </style>
+</head>
+<body>
+  <div id="app"></div>
+    <script src="https://unpkg.com/react@15/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
+    <script>
+      var h1 = React.DOM.h1;
+      var h2 = React.DOM.h2;
+      var p = React.DOM.p;
+      var div = React.DOM.div;
+
+      class Tweet extends React.Component {
+        render() {
+          return div(
+            null,
+            h2(null, this.props.username + "'s tweet: "),
+            p({className: this.props.username}, this.props.message + " - " + this.props.name + " (" + this.props.date + ")")
+          )
+        }
+      }
+
+      var App = (
+        div(null,
+          React.createElement(Tweet, {
+            username: "blythe", 
+            name: "Blythe the Toddler", 
+            date: "6/5/2017", 
+            message: "React is awesome!"
+          }),
+          React.createElement(Tweet, {
+            username: "whiskey", 
+            name: "Whiskey the Dog", 
+            date: "6/3/2017", 
+            message: "Woof woof!"
+          }),
+          React.createElement(Tweet, {
+            username: "moxie", 
+            name: "Moxie the Cat", 
+            date: "6/7/2017", 
+            message: "Meow meow! Take me for a walk, Tim!"
+          })
+        )
+      )
+
+      ReactDOM.render(App, document.getElementById("app"));
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+.done, .notDone {
+  margin: .5rem;
+}
+
+.done {
+  text-decoration: line-through;
+}
+
+li {
+  display: inline-block;
+  width: 100%;
+  padding: 1rem;
+  font-size: 16px;
+  background: #C8B4CC;
+}
+
+li:nth-child(odd) { 
+  background: #FBE1FF; 
+}
+
+.glyphicon-star, .glyphicon-star-empty {
+  margin-right: .75rem;
+  margin-left: 3rem;
+}
+
+.glyphicon-remove {
+  color: gray;
+  font-size: 1.5rem;
+}
+
+.glyphicon-pencil {
+  color: gray;
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.btn {
+  background-color: inherit;
+}
+
+button {
+  outline: none !important; 
+}
