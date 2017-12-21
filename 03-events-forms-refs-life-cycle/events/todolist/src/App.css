@@ -1,0 +1,18 @@
+.todo-item {
+  font-size: 11px;
+  font-family: sans-serif;
+  /*border: 1px solid black;*/
+  width: 70%;
+  padding: 5px 15px;
+  margin: 1em 1em;
+}
+
+.todo-list, .todo-form {
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+.todo-title {
+  font-weight: bold;
+}
