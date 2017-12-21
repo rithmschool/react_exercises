@@ -74,12 +74,30 @@ class Person extends React.Component {
 	render() {
 			var name = this.props.name;
 			var age = this.props.age;
-			if (+age >= 21) {
+			var hobbies = this.props.hobbies;
+			var canDrink = 'have a drink!'
+			var cannotDrink = 'you must be 21'
 
-			}
 		return (
-		
-
+			<div>
+			<p>Learn some information about this person!</p>
+			{ name.length > 8 ? 
+				<h2>{ name.slice(0,6) }</h2>
+				:
+				<h2>{ name }</h2>
+			}
+			{age >= 21 ? 
+				<h3>{ canDrink }</h3>
+				:
+				<h3>{ cannotDrink }</h3>
+			}
+			<p>Your hobbies:</p>
+			<ul>
+				{ hobbies.map(hobby => {
+					return <li>{ hobby }</li>;
+				})}
+			</ul>
+			</div>
 		)
 	}
 }
@@ -88,7 +106,7 @@ class App extends React.Component {
 	render() {
 		return (
 			<div>
-				<Person name='Trevor' age='24'/>
+				<Person name='Samwellbaggins' age='21' hobbies={['adventures','rings','frodo','eating','frodo']}/>
 			</div>
 		)
 	}
