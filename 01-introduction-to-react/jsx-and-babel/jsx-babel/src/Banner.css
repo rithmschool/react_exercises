@@ -1,0 +1,18 @@
+.header {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 0.3))), url('https://static.pexels.com/photos/106400/pexels-photo-106400.jpeg');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)), url('https://optimizedude.com/wp-content/uploads/2015/02/Cool-Twitter-Image-3.jpg');
+	background-attachment:fixed;
+    background-size: cover;
+    background-position: center;
+    height: 80vh;
+}
+
+.hero-text-box {
+    color: white;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
