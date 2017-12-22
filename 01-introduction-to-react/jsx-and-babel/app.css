@@ -1,0 +1,35 @@
+h1.part-title, h2.part-title {
+	text-decoration: underline;
+}
+
+p.person-info {
+	margin: 3px;
+}
+
+p.person-title {
+	font-weight: 600;
+	font-size: 18px;
+	margin: 15px 0 0 0;
+
+}
+ul {
+	margin: 5px 0 0 0;
+	
+}
+
+.drink-title {
+	margin-bottom: 10px;
+	margin-top: 5px;
+}
+
+.tweet-info {
+	margin: 20px 0 0 0;
+	font-style: italic;
+}
+.tweet {
+	margin: 5px 0 0 0;
+}
+
+.tweeter {
+	color: blue;
+}
