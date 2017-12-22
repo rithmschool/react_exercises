@@ -37,3 +37,5 @@ class NewToDoForm extends Component {
 }
 
 export default NewToDoForm;
+//OR Line 31 <button onClick={e => this.prop.fnSubmit(this.state.currentText, e)}
+// handle e.preventDefault() in parent
