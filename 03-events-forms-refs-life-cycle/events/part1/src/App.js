@@ -5,17 +5,53 @@ import "./App.css";
 class App extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      disabled: false
+    };
+    this.handleClick = this.handleClick.bind(this);
   }
-
-  render() {
-    const links = this.props.links.map(e => {
-      <CustomLink href={e.href} text={e.text} />;
+  handleClick(e) {
+    this.setState((prevState, props) => {
+      return { disabled: !prevState.disabled };
     });
+  }
+  render() {
+    let buttonText;
+    let links;
+    if (this.state.disabled) {
+      buttonText = "Enable Links";
+      links = this.props.links.map(e => {
+        return (
+          <CustomLink
+            key={e.href}
+            href="javascript:void(0);"
+            text={e.text}
+            underline={false}
+          />
+        );
+      });
+    } else {
+      buttonText = "Disable Links";
+      links = this.props.links.map(e => {
+        return (
+          <CustomLink
+            key={e.href}
+            href={e.href}
+            text={e.text}
+            underline={true}
+          />
+        );
+      });
+    }
     return (
       <div className="App">
         <header className="App-header">
           <h1 className="App-title">Part1</h1>
         </header>
+        <section>
+          {links}
+          <button onClick={this.handleClick}>{buttonText}</button>
+        </section>
       </div>
     );
   }
@@ -29,7 +65,7 @@ App.defaultProps = {
     },
     {
       href: "https://codewars.com/",
-      text: "LeetCode"
+      text: "CodeWars"
     },
     {
       href: "https://hackerrank.com/",
