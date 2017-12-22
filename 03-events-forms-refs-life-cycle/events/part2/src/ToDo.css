@@ -1,0 +1,18 @@
+p {
+	margin: 15px;
+	position: relative;
+}
+
+img {
+	height: 15px;
+	width: 15px;
+}
+
+.ToDo {
+	margin-right: 40vw;
+}
+
+.ButtonSection {
+	position: absolute;
+	right: 0px;
+}

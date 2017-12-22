@@ -1,0 +1,14 @@
+.Finish {
+	background-color: lightgreen;
+	width: 5vw;
+}
+
+.Edit {
+	background-color: yellow;
+	width: 5vw;
+}
+
+.Delete {
+	background-color: red;
+	width: 5vw;
+}
