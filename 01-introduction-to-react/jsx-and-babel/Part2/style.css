@@ -1,0 +1,15 @@
+.tweet {
+	height: 250px;
+	width: 250px;
+	background-color: lightblue;
+	border: 1px solid black;
+}
+
+.inline {
+	display: inline-block;
+	padding: 0px 5px;
+}
+
+p {
+	padding: 0px 10px;
+}
