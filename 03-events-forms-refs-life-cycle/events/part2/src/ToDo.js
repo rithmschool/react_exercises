@@ -1,26 +1,32 @@
 import React from "react";
-import Button from "./Button";
 import "./ToDo.css";
 
 const ToDo = props => {
 	return (
 		<p>
 			{props.finished ? (
-				<img
-					src="https://cdn.pixabay.com/photo/2014/04/02/10/40/check-304167_960_720.png"
-					alt="Finished"
-				/>
+				<a onClick={props.completeButton}>
+					<img
+						src="http://is2.mzstatic.com/image/thumb/Purple5/v4/0e/52/a8/0e52a81b-bbe0-69fe-9d86-a3a47d5a9c63/source/1200x630bb.jpg"
+						alt="Finished"
+					/>
+				</a>
 			) : (
-				<img
-					src="https://freeclipartspot.com//storage/upload/square-clip-art/square-clip-art-6.png"
-					alt="Unfinished"
-				/>
+				<a onClick={props.completeButton}>
+					<img
+						src="https://freeclipartspot.com//storage/upload/square-clip-art/square-clip-art-6.png"
+						alt="Unfinished"
+					/>
+				</a>
 			)}
 			<span className="ToDo"> {props.name} </span>
 			<span className="ButtonSection">
-				<Button type="Finish" />
-				<Button type="Edit" />
-				<Button type="Delete" />
+				<button
+					onClick={props.deleteButton}
+					style={{ backgroundColor: "red" }}
+				>
+					Delete
+				</button>
 			</span>
 		</p>
 	);
