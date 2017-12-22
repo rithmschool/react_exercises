@@ -11,6 +11,7 @@ class Pokedex extends Component {
                 image={poke.image} />
   )
     return (
+
       <div>
           {pokemon}
       </div>
