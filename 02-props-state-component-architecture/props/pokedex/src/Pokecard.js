@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-//import "./Pokecard.css";
+import "./Pokecard.css";
 
 export default class Pokecard extends Component {
 	render() {
@@ -7,7 +7,7 @@ export default class Pokecard extends Component {
 
 		const { name, image, type } = this.props;
 		return (
-			<div>
+			<div className="card">
 				<h3> {name}</h3>
 				<img src={image} alt={altText} />
 				<h5>Type: {type}</h5>
