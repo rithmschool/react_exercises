@@ -1,0 +1,16 @@
+.card {
+	display: inline-block;
+	background-color: lightgrey;
+	margin: 1em;
+	padding: 1em;
+	min-width: 125px;
+	border-radius: 5px;
+}
+
+.name {
+	color: blue;
+}
+
+.type {
+	font-weight: bold;
+}
