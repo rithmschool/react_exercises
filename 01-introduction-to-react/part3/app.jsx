@@ -3,22 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <link rel="stylesheet" type="text/css" href="app.css">
-  <title>Part 2</title>
-  <style>
-    img {
-         height: 15%;
-         width: 15%;
-    }
-    div {
-    	background-color: #e6ffff;
-    	padding: 3% 0; 
-    	width:800px; 
-    	text-align: center;
-    	margin: 0 auto;  
-    	
-    }
-
-  </style>
+  <title>React + Babel</title>
 </head>
 <body>
   <div id="app"></div>
