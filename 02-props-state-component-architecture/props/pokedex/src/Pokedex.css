@@ -1,0 +1,12 @@
+.container {
+	margin: 0 auto;
+	width: 80%;
+	text-align: center;
+}
+
+.pokemon-container {
+	margin: 0 auto;
+	display: inline-block;
+}
+
+

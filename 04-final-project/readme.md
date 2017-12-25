@@ -11,4 +11,4 @@ Next, try to build a browser based game using Components! Here are some ideas:
 - Card games (Blackjack, Poker, etc)
 - Dice games (Craps, Yahtzee, etc)
 - Memory game
-- Mad Libs
+- Mad Libs 
