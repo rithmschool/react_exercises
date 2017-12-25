@@ -1,0 +1,29 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+#pCard {
+		display:inline-block;
+		 height: 230px;
+		 width: 230px;
+		 margin-bottom: 50%; 
+		 padding-bottom: 5%;	
+		 background-color: lightgrey;	
+		 margin: 4%;
+		}
+
+h2 {
+    text-align: center;
+   }
+
+section {
+	width:80%;
+	margin: auto;
+	display: flex;
+	flex-direction: row;
+    justify-content: center;
+    flex-flow: row wrap;
+
+}
