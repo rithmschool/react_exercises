@@ -2,8 +2,10 @@ import React, {Component} from 'react';
 
 class CustomLink extends Component{
 	render(){
-		return();
+		return(
+             <a href={this.props.url}>{this.props.text}</a>
+			);
 	}
 }
 
-default export CustomLink;
+export default CustomLink;
