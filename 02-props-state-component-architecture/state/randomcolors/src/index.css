@@ -1,0 +1,28 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+#box {
+		display:inline-block;
+		 height: 230px;
+		 width: 230px;
+		
+		 padding-bottom: 5%;	
+		 background-color: lightgrey;	
+		 margin: 1%;
+		}
+
+h2 {
+    text-align: center;
+   }
+
+section {
+	width:80%;
+	margin: auto;
+	display: flex;
+	flex-direction: row;
+    justify-content: space-between;
+    flex-flow: row wrap;
+}
