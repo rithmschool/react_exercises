@@ -5,12 +5,13 @@ import CustomLink from './CustomLink'
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">Custom Link</h1>
-        </header>
-        
-
+      <div>
+          <h1>Custom Link</h1>
+          <CustomLink url="https://www.google.com/" text="google" />
+          <br/>
+          <CustomLink url="https://www.google.com/" text="google" />
+          <br/>
+          <CustomLink url="https://www.google.com/" text="google" />
       </div>
     );
   }
