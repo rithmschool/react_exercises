@@ -5,14 +5,10 @@ body {
 }
 
 #box {
-		display:inline-block;
-		 height: 230px;
-		 width: 230px;
-		
-		 padding-bottom: 5%;	
-		 background-color: lightgrey;	
-		 margin: 1%;
-		}
+		height: 150px;
+		width: 113px;	
+		background-color: lightgrey;	
+	}
 
 h2 {
     text-align: center;
@@ -23,6 +19,6 @@ section {
 	margin: auto;
 	display: flex;
 	flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
     flex-flow: row wrap;
 }
