@@ -11,7 +11,7 @@ class CustomLink extends Component{
 		}
 		return(
 			<div>
-				{link};
+				{link}
 			</div>
 		);
 	}

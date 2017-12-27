@@ -8,9 +8,10 @@ class App extends Component {
     super(props);
 
     this.state ={
-      url1: "https://www.google.com/",
-      url2: "https://www.google.com/",
-      url3: "https://www.google.com/"
+      url1: "https://www.pingmylinks.com/",
+      url2: "https://www.facebook.com/pingmylinks/",
+      url3: "https://www.excitesubmit.com/html/contact.html",
+      btn : "Disable Links"
     }
 
       this.handleClick = this.handleClick.bind(this);
@@ -18,20 +19,22 @@ class App extends Component {
   
 
     handleClick() {
-      if (this.state.url1 === "https://www.google.com/"){
+      if (this.state.url1 === "https://www.pingmylinks.com/"){
          this.setState({
              url1: "#",
              url2: "#",
-             url3: "#"
+             url3: "#",
+             btn : "Enable Links"
 
          }
            
           )
       }else{
         this.setState({
-          url1 : "https://www.google.com/",
-          url2 : "https://www.google.com/",
-          url3 : "https://www.google.com/"
+          url1 : "https://www.pingmylinks.com/",
+          url2 : "https://www.facebook.com/pingmylinks/",
+          url3 : "https://www.google.com/",
+          btn : "Disable Links"
         }
         )
       }
@@ -39,16 +42,17 @@ class App extends Component {
     
   render() {
     return (
-      <div>
-          <h1>Custom Link</h1>
-          <CustomLink url={this.state.url1} text="google" />
+      <section>
+          <img src="https://www.pingmylinks.com/logo.gif" alt="pingmylinks" />
+          <h1>Custom Links</h1>
+          <CustomLink url={this.state.url1} text="home" />
           <br/>
-          <CustomLink url={this.state.url2} text="google" />
+          <CustomLink url={this.state.url2} text="facebook" />
           <br/>
-          <CustomLink url={this.state.url3} text="google" />
+          <CustomLink url={this.state.url3} text="contact" />
           <br/>
-          <button onClick={this.handleClick}>Dissable Links</button>
-      </div>
+          <button onClick={this.handleClick}>{this.state.btn}</button>
+      </section>
     );
   }
 }
