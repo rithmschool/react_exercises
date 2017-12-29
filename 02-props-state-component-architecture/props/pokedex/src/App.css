@@ -1,0 +1,26 @@
+.App {
+  text-align: center;
+}
+
+h1.title {
+  color: grey;
+}
+
+h2 {
+  color: blue;
+}
+
+.content {
+  display: flex;
+  flex-direction: row;
+}
+
+div.card {
+  display: inline-block;
+  background-color: lightgrey;
+  margin-right: 4em;
+  margin-bottom: 3em;
+  width: 200px;
+  padding: 1.5em 0;
+  border-radius: 10px;
+}
