@@ -7,15 +7,15 @@ class GifList extends Component{
 	   	super(props);
 
 	   	this.state={
-	         gifs : []
+	         gifs : ["hi"]
 	   	}
 
-	   	this.removeGif = this.removeGif.bind(this);
+	   	this.removeGifs = this.removeGifs.bind(this);
 	   	this.getGif = this.getGif.bind(this);
 
    }
 
-    removeGif(){
+    removeGifs(){
         this.setState({
         	gifs : [] 
         });
@@ -23,18 +23,17 @@ class GifList extends Component{
 
     getGif(response){
         this.setState({
-            gifs: [...this.state.gifs, response.data[Math.floor(Math.random()*response.data.length)]]
+            gifs: [response.data[Math.floor(Math.random()*response.data.length)], ...this.state.gifs]
         });
     }
 
     render(){
     	let list = this.state.gifs.map((gif, idx)=>{
-    		return <div key={idx}><iframe src={gif.embed_url}/></div>
+    		return <div key={idx}> <iframe src={gif.embed_url} /></div>
     	})
     	return(
     		<div>
-	             <h1>GIPHY PARTY</h1>
-	             <GifForm removeGif={this.removeGif} getGif={this.getGif} /> 
+	             <GifForm removeGifs={this.removeGifs} getGif={this.getGif} /> 
 	             {list}
 	        </div>
     	);

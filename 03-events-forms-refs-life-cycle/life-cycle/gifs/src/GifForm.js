@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 
+
 class GitForm extends Component{
     
     constructor(props){
@@ -13,7 +14,7 @@ class GitForm extends Component{
     }
     
     removeGif(){
-    	return this.props.removeGif;
+    	return this.props.removeGifs();
     }
 
     handleChange(e){
@@ -22,6 +23,15 @@ class GitForm extends Component{
             [e.target.name]: e.target.value
         });
      }
+
+    componentDidMount() {
+	    let randomTerms = ["happy", "funny", "baby", "silly", "party", "dance", "sing", "music", "jump", "run"];
+	    fetch(`https://api.giphy.com/v1/gifs/search?q=${randomTerms[Math.floor(Math.random()*randomTerms.length)]}&api_key=dc6zaTOxFJmzC`)
+	      .then(r => r.json())
+	      .then(r => {
+	        this.props.getGif(r)
+	      })
+    }
   
     handleSubmit(e){
         e.preventDefault();
@@ -38,24 +48,26 @@ class GitForm extends Component{
 
     render(){
     	return(
-             <form onSubmit={this.handleSubmit}>
-                 <div>
-                     <input
-                        type="text"
-                        value={this.state.category}
-                        onChange = {this.handleChange}
-                        name = "category"
-                        placeholder = "Search for Giphy's category"
-                     />
-                 </div>
-                 <div>
-                     <input type="submit" value="Search Giphy" />
-                 </div>
-                 <div>
-                     <button onClick={this.removeGif}>Remove All Giphies</button>
-                 </div>
-             </form>    
-
+    		<div>
+	             <form onSubmit={this.handleSubmit}>
+	                <div className="search__container">
+					    <p className="search__title">
+					        Go ahead, hover over and search for gif
+					    </p>
+	                     <input
+	                        className="search__input"
+	                        type="text"
+	                        value={this.state.category}
+	                        onChange = {this.handleChange}
+	                        name = "category"
+	                        placeholder = "Search"
+	                     />
+	                 </div>
+	             </form>    
+	             <div>
+	                     <button onClick={this.removeGif}>Remove All Giphies</button>
+	             </div>
+            </div>
     		);
     }
 
