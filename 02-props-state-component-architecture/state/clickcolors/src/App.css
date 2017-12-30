@@ -1,0 +1,16 @@
+.App {
+  text-align: center;
+}
+
+.box {
+  width: 200px;
+  height: 200px;
+  margin: 10px;
+
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
