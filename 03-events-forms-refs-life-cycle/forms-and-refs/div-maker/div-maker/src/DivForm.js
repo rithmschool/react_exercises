@@ -32,7 +32,6 @@ export default class DivForm extends Component {
 							type="number"
 							value={this.handleChange}
 							name="width"
-							ref={el => (this.width = el)}
 						/>
 					</label>
 				</div>
