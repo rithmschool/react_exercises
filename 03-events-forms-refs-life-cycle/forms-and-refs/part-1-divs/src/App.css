@@ -1,0 +1,13 @@
+.App {
+  text-align: center;
+}
+
+div.container {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+form {
+  margin: 30px;
+}
