@@ -1,0 +1,80 @@
+
+@use postcss-color-function;
+@use postcss-nested;
+@import url('https://fonts.googleapis.com/css?family=Raleway:400,700,900');
+
+#body{
+    margin: 0 auto;
+    width: 60%;
+    background-color: #ff8b8852;
+    padding-right: 7%;
+    padding-bottom: 30px;
+}
+
+#list{
+	width: 40%;
+    margin: 5% auto;
+}
+
+.search__container {
+        padding-top: 30px;
+}
+    
+.search__title {
+        font-size: 22px;
+        font-weight: 900;
+        text-align: center;
+        color: #ff8b88;
+}
+  
+.remove{
+    width: 15%;
+    padding: 12px 24px;
+    font-size: 14px;
+    color: #575756;
+    border-radius: 50px;
+    border: 1px solid #575756;
+    background-color: transparent;
+    float:right;
+    margin-top: -45px;
+    margin-right: 30px;
+ }   
+
+.search__input {
+        width: 50%;
+        padding: 12px 24px;
+        transition: transform 250ms ease-in-out;
+        font-size: 14px;
+        line-height: 18px;
+        color: #575756;
+        background-color: transparent;
+        background-image: url(http://mihaeltomic.com/codepen/input-search/ic_search_black_24px.svg);
+        background-repeat: no-repeat;
+        background-size: 18px 18px;
+        background-position: 95% center;
+        border-radius: 50px;
+        border: 1px solid #575756;
+        transition: all 250ms ease-in-out;
+        backface-visibility: hidden;
+        transform-style: preserve-3d;
+        margin-left: 22%;
+
+}   
+
+input placeholder {
+            color: color(#575756 a(0.8));
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+        
+input hover, focus {
+            padding: 12px 0;
+            outline: 0;
+            border: 1px solid transparent;
+            border-bottom: 1px solid #575756;
+            border-radius: 0;
+            background-position: 100% center;
+        }
+
+
+
