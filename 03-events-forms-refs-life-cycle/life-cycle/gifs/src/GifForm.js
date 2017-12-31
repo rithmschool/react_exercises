@@ -29,7 +29,7 @@ class GitForm extends Component{
 	    fetch(`https://api.giphy.com/v1/gifs/search?q=${randomTerms[Math.floor(Math.random()*randomTerms.length)]}&api_key=dc6zaTOxFJmzC`)
 	      .then(r => r.json())
 	      .then(r => {
-	        this.props.getGif(r)
+	        this.props.firstGif(r)
 	      })
     }
   
@@ -52,7 +52,7 @@ class GitForm extends Component{
 	             <form onSubmit={this.handleSubmit}>
 	                <div className="search__container">
 					    <p className="search__title">
-					        Go ahead, hover over and search for gif
+					        Go ahead and search for gif
 					    </p>
 	                     <input
 	                        className="search__input"
@@ -65,7 +65,7 @@ class GitForm extends Component{
 	                 </div>
 	             </form>    
 	             <div>
-	                     <button onClick={this.removeGif}>Remove All Giphies</button>
+	                     <button className="remove" onClick={this.removeGif}>Remove</button>
 	             </div>
             </div>
     		);
