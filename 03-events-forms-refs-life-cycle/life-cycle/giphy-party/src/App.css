@@ -1,0 +1,48 @@
+body {
+	background-color: black;
+}
+
+div.header {
+	padding-top: 2rem;
+	background: linear-gradient(#424242 20%, black);
+	width: 100%;
+}
+div.form {
+	display: flex;
+	justify-content: center;
+	padding-top: 1rem;
+	padding-bottom: 2rem;
+
+}
+h1 {
+	color: white;
+}
+
+.App {
+  text-align: center;
+}
+
+button {
+  height: 40px;
+  border-radius: 5px;
+  align-self: center;
+}
+
+button.add {
+	background-color: #b0ff51;
+	border: none;
+	margin-right: 5px;
+}
+button.remove {
+	background-color: #d61915;
+	border: none;
+	color: white;
+}
+
+input {
+	border-radius: 5px;
+	height: 25px;
+	margin-right: 20px;
+	padding-left: 1rem;
+	align-self: center;
+}
