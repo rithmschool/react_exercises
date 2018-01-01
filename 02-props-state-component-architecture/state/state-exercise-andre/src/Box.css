@@ -1,0 +1,16 @@
+.app {
+	text-align: center;  
+}
+
+.cards {
+	display:flex;
+  justify-content:center;
+  width: 700px;
+  flex-wrap: wrap;
+  margin: 0 auto;
+}
+
+.app-title {
+  color: grey;
+  display: block;
+}
