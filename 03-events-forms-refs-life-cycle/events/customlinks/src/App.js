@@ -12,7 +12,7 @@ class App extends Component {
 
   handleButtonClick() {
     this.setState({
-      linkDisabled: !this.state.linksDisabled
+      linksDisabled: !this.state.linksDisabled
     });
   }
 
