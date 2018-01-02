@@ -1,4 +1,4 @@
-.poke-card {
+.box {
 	border-radius: 0px;
   background: lightgrey;
   width: 210px;
@@ -6,12 +6,3 @@
   margin-bottom: 3px;
 }
 
-p.type {
-	font-weight: 600;
-  padding: 5px;
-
-}
-
-.name {
-	color: #0048fb;
-}

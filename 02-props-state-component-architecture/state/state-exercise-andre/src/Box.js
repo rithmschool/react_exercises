@@ -13,16 +13,29 @@ export default class Box extends Component {
     this.state = {boxes: boxArr}
 	}
 
+  handleClick(idx) {
+    const { boxes } = this.state;
+    const newBoxes = boxes.slice(0);
+    newBoxes[idx].bgcolor = this.props.colors[Math.floor(Math.random() * 148)];
+    this.setState({
+      boxes: newBoxes
+    });
+  }
+
   render() {
-    const allBoxes = this.state.boxes.map(box => {
+    const allBoxes = this.state.boxes.map((box, idx) => {
       return (
-  			<Boxdiv key={box.key} bgcolor={box.bgcolor}	/>
+  			<Boxdiv changeColor={this.handleClick.bind(this, idx)}
+        key={box.key}
+        bgcolor={box.bgcolor}
+      />
   		);
     });
+
   	return (
   		<div className="app">
         <h1 className="app-title">Hyper-Color Boxes</h1>
-        <div className="cards">
+        <div className="boxes">
         	{allBoxes}
         </div>
       </div>

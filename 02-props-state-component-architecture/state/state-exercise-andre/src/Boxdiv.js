@@ -8,7 +8,7 @@ export default class Boxdiv extends Component {
   render() {
   	var style = { background: this.props.bgcolor };
     return (
-      <div style={style} className="poke-card" key={this.props.key} bgcolor={this.props.bgcolor}>
+      <div onClick={this.props.changeColor} style={style} className="box" key={this.props.key} bgcolor={this.props.bgcolor}>
       </div> 
     );
   }	
