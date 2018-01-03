@@ -5,11 +5,36 @@ import Todo from './Todo'
 class TodoList extends Component {
 	constructor(props){
    		super(props);
+   		this.state = {
+   			todos: [
+   				{
+					id: 1,
+					title: 'Do THIS!!',
+					text: 'Get homework done!'
+				}, 
+				{
+					id: 2,
+					title: 'Please work!!',
+					text: 'Still more to do!'
+				}]
+   		};
   	}
+
+  	handleRemove(idx) {
+  		const { todos } = this.state;
+  		const newTodos = todos
+  			.slice(0, idx)
+  			.concat(todos.slice(idx + 1));
+  		this.setState({
+  			todos: newTodos
+  		});
+  	}
+
 	render() {
-		const todos = this.props.todos.map(todo => {
+		let todos = this.state.todos.map((todo, idx) => {
 			return (
 				<Todo key={todo.id}
+					removeTodo= {this.handleRemove.bind(this, idx)}
 					title={todo.title}
 					text={todo.text}
 				/>
@@ -22,14 +47,6 @@ class TodoList extends Component {
 			</div>
 		)
 	}
-}
-
-TodoList.defaultProps = {
-	todos: [{
-		id: 1,
-		title: 'Do THIS!!',
-		text: 'Get homework done!'
-	}]
 }
 
 export default TodoList;

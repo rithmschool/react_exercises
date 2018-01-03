@@ -6,10 +6,14 @@ class Todo extends Component {
   	}
 	render() {
 		return(
-			<ul>
-				<h3>{this.props.title}</h3>
-				<p>{this.props.text}</p>
-			</ul>
+			<div>
+				<ul>
+					<h3>{this.props.title}</h3>
+					<p>{this.props.text}</p>
+				</ul>
+				<button onClick={this.props.removeTodo}>X</button>
+				<button onClick={this.props.completeTodo}>Mark Complete</button>
+			</div>
 		)
 	}
 }
