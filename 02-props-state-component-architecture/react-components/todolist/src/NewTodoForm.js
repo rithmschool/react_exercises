@@ -29,10 +29,8 @@ class NewTodoForm extends Component {
           <input
             type="text"
             name="id"
-            id="id"
             placeholder="what do ya need tadah?"
             onChange={this.handleChange}
-            value={this.state.id}
           />
           <input type="submit" value="Add your todo!" />
         </form>

@@ -18,9 +18,10 @@ class TodoList extends Component {
 					id: 2,
 					title: 'Please work!!',
 					text: 'Still more to do!'
-				}], 
-			newTodo: ''
-   		};
+				}
+			]
+   		}
+   		this.handleAdd = this.handleAdd.bind(this);
   	}
 
   	handleRemove(idx) {
@@ -32,6 +33,11 @@ class TodoList extends Component {
   			todos: newTodos
   		});
   	}
+
+  	handleAdd(newTodo) {
+    // this.setState({gifs: this.state.gifs.concat(newGif)})
+    this.setState({todos: [newTodo, ...this.state.todos]})
+  }
 
 	render() {
 		let todos = this.state.todos.map((todo, idx) => {
@@ -46,7 +52,7 @@ class TodoList extends Component {
 		return (
 			<div>
 				<h1>TodoList!</h1>
-				<NewTodoForm />
+				<NewTodoForm addTodo={this.handleAdd}/>
 				<div className='todolist-container'>
 					{todos}
 				</div>
