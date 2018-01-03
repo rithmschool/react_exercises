@@ -4,10 +4,10 @@
 	border-radius: 10px;
 	background-color: gray;
 	border: 4px solid gray;
-	display: flex;
+	display: inline-flex;
 	flex-direction: column;
-	justify-content: center;
-	align-items: center;
+	align-content: center;
+	width: 175px;
 }
 
 .name {

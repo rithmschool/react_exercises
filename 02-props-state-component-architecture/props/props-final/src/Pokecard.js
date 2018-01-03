@@ -5,7 +5,7 @@ class Pokecard extends Component {
 	render() {
 		const pokemonList = this.props.pokemon.map(poke => {
 			return (
-				<div className='card'>
+				<div className='card' key={poke.id}>
 					<h2 className='name'>{poke.name}</h2>
 					<img src={poke.image} alt={poke.id} />
 					<strong>Type: {poke.type} </strong>
