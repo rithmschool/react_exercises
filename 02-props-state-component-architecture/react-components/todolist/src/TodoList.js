@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Todo from './Todo'
+import './TodoList.css'
 
 
 class TodoList extends Component {
@@ -43,7 +44,9 @@ class TodoList extends Component {
 		return (
 			<div>
 				<h1>TodoList!</h1>
-				{todos}
+				<div className='todolist-container'>
+					{todos}
+				</div>
 			</div>
 		)
 	}
