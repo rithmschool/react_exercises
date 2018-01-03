@@ -13,7 +13,7 @@ class Todo extends Component {
 	}
 
 	render() {
-		let buttonText = this.state.complete ? "done" : "not done";
+		let buttonText = this.state.complete ? "done!!!" : "not done";
 		return (
 			<div>
 				<h3>{this.props.title}</h3>
