@@ -21,6 +21,7 @@ class TodoList extends Component{
 		this.handleRemove = this.handleRemove.bind(this);
 		this.handleAdd = this.handleAdd.bind(this);
 		this.handleInputChange = this.handleInputChange.bind(this);
+		this.handleEdit = this.handleEdit.bind(this);
 	}
 
 	handleMarkComplete(id){
@@ -30,7 +31,7 @@ class TodoList extends Component{
 			}
 			return val;
 		})
-		this.setState({todos: updatedTodos})
+		this.setState({todos: updatedTodos});
 	}
 
 	handleRemove(id){
@@ -49,10 +50,21 @@ class TodoList extends Component{
 		this.setState({inputDescription: ''});
 		this.setState({todos: [...this.state.todos, newTodo]});
 	}
-	
+
 	handleInputChange(e){
 		this.setState({[e.target.name] : e.target.value});
 
+	}
+
+	handleEdit(id, title, description){
+		let updatedTodos = this.state.todos.map(val => {
+			if (val.id === id){
+				val.title = title;
+				val.description = description;
+			}
+			return val;
+		});
+		this.setState({todos: updatedTodos});
 	}
 
 
@@ -67,6 +79,7 @@ class TodoList extends Component{
 				isComplete = {val.isComplete}
 				markComplete={this.handleMarkComplete.bind(this,val.id)}
 				remove={this.handleRemove.bind(this,val.id)}
+				edit={this.handleEdit}
 				/>		
 				)
 		} )
