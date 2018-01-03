@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Todo from './Todo';
+import NewTodoForm from './NewTodoForm';
 
 
 class TodoList extends Component{
@@ -10,11 +11,16 @@ class TodoList extends Component{
 				{id: 1, title: 'chore', description: 'wash pots and pans', isComplete: false},
 				{id: 2, title: 'chore', description: 'mow the lawn', isComplete: true}
 			],
-			idCounter : 3
-
+			idCounter : 3,
+			inputTitle : '',
+			inputDescription: '' 
 		}
+
+
 		this.handleMarkComplete = this.handleMarkComplete.bind(this);
-		this.handleRemove = this.handleRemove.bind(this)
+		this.handleRemove = this.handleRemove.bind(this);
+		this.handleAdd = this.handleAdd.bind(this);
+		this.handleInputChange = this.handleInputChange.bind(this);
 	}
 
 	handleMarkComplete(id){
@@ -31,10 +37,29 @@ class TodoList extends Component{
 		this.setState({todos : [...this.state.todos.filter(val => val.id !==id)]});
 	}
 
+	handleAdd(e){
+		e.preventDefault();
+		let newTodo = {id: this.state.idCounter, 
+			description: this.state.inputDescription, 
+			title: this.state.inputTitle,
+			isComplete: false
+		}
+		this.setState({idCounter: this.state.idCounter + 1});
+		this.setState({inputTitle: ''});
+		this.setState({inputDescription: ''});
+		this.setState({todos: [...this.state.todos, newTodo]});
+	}
+	
+	handleInputChange(e){
+		this.setState({[e.target.name] : e.target.value});
+
+	}
+
 
 	render(){
 		let todoListItems = this.state.todos.map(val => {
-			return ( <Todo 
+			return ( 	
+				<Todo 
 				key={val.id}
 				id={val.id}
 				title={val.title}
@@ -42,12 +67,21 @@ class TodoList extends Component{
 				isComplete = {val.isComplete}
 				markComplete={this.handleMarkComplete.bind(this,val.id)}
 				remove={this.handleRemove.bind(this,val.id)}
-			/>	)
+				/>		
+				)
 		} )
 		return (
-			<ul>
-				{ todoListItems }
-			</ul>
+			<div>
+				<NewTodoForm
+					inputTitle = {this.state.inputTitle}
+					inputDescription = {this.state.inputDescription}
+					inputChange = {this.handleInputChange}
+					addTodo = {this.handleAdd}
+				/>
+				<ul>
+					{ todoListItems }
+				</ul>
+			</div>	
 		)	
 	}
 
