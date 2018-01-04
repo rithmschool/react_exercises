@@ -12,17 +12,17 @@ class TodoList extends Component {
         {
           id: 1,
           title: "Grocery",
-          description: "Buy food so I can have dinner" 
+          description: "Buy food so I can have dinner",
         },
         {
           id: 2,
           title: "Workout",
-          description: "Exercise so I can stop being fat" 
+          description: "Exercise so I can stop being fat",
         },
         {
           id: 3,
           title: "Learn React",
-          description: "Learn react router and redux" 
+          description: "Learn react router and redux",
         }
       ],
       nextId: 4
@@ -38,6 +38,17 @@ class TodoList extends Component {
     })
   }
 
+  handleEdit(id, updatedTodo){
+    let newTodos = this.state.todos.map(todo => {
+      if(id === todo.id){
+        // First assign it all of the old attributes then overwrite it with updated
+        todo = Object.assign({}, todo, updatedTodo)
+      }
+      return todo
+    })
+    this.setState({todos: newTodos})
+  }
+
   handleDelete(idx){
     var newTodo = this.state.todos.filter(t => t.id !== idx)
     this.setState({todos: newTodo})
@@ -49,7 +60,7 @@ class TodoList extends Component {
         <Grid>
           <Row>
             <h1>Add a Todo</h1>
-            <Todoform add={this.handleAdd} />
+            <Todoform handleSubmit={this.handleAdd} />
             <h1>Todo List</h1>
             <ListGroup>
               {this.state.todos.map(todo => {
@@ -59,6 +70,7 @@ class TodoList extends Component {
                     title={todo.title} 
                     description={todo.description}
                     deleteTodo={this.handleDelete.bind(this, todo.id)}
+                    updatedTodo={this.handleEdit.bind(this, todo.id)}
                   />
                 )}
               )}

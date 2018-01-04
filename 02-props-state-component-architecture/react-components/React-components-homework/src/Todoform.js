@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
-import {FormControl} from 'react-bootstrap'
 
 class Todoform extends Component {
   constructor(props){
   	super(props)
   	this.state = {
-      id: '',
-      title: '',
-      description: ''
+      title: this.props.title,
+      description: this.props.description
   	}
 
     this.handleChange = this.handleChange.bind(this)
@@ -21,14 +19,20 @@ class Todoform extends Component {
   handleSubmit(e){
     e.preventDefault()
     const newTodo = {...this.state}
-    this.props.add(newTodo)
+    this.props.handleSubmit(newTodo)
+    
     this.setState({
       title: '',
       description: ''
     })
+
+    if(this.props.title){
+      this.props.toggle()
+    }
   }
 
   render() {
+    let buttonLabel = this.props.title ? "Edit this todo" : "Add this todo"
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
@@ -56,11 +60,16 @@ class Todoform extends Component {
               value={this.state.description}
             />
           </div>
-            <button type = "submit" className='btn btn-primary'>Add todo</button>
+            <button type = "submit" className='btn btn-primary'>{buttonLabel}</button>
         </form>
       </div>
     );
   }
+}
+
+Todoform.defaultProps = {
+  title: "",
+  description: ""
 }
 
 export default Todoform;
