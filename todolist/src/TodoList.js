@@ -13,20 +13,11 @@ class TodoList extends Component {
 		this.handleEdit = this.handleEdit.bind(this);
 		this.addTodo = this.addTodo.bind(this);
 	}
-
-	handleEdit(id) {
-		let editedTodo = this.state.todos.filter(t => t.id === id);
-		let editTodos = this.state.todos.map(el => {
-			if (el.id === id) {
-				return editedTodo;
-			}
-			return el;
-		});
-		this.setState({
-			todos: editTodos
-		});
+	componentWillMount() {
+		let todos = JSON.parse(localStorage.getItem("todos")) || [];
+		let nextId = +JSON.parse(localStorage.getItem("nextId")) || 0;
+		this.setState({ todos, nextId });
 	}
-
 	toggleComplete(id) {
 		const newTodos = this.state.todos.map(todo => {
 			if (todo.id === id) {
@@ -34,24 +25,40 @@ class TodoList extends Component {
 			}
 			return todo;
 		});
-		this.setState({
-			todos: newTodos
-		});
+		this.setState(
+			{
+				todos: newTodos
+			},
+			() => {
+				localStorage.setItem("todos", JSON.stringify(this.state.todos));
+			}
+		);
 	}
 
 	addTodo(e) {
 		const newTodo = { ...e, id: this.state.nextId };
-		this.setState({
-			todos: [newTodo, ...this.state.todos],
-			nextId: this.state.nextId + 1
-		});
+		this.setState(
+			{
+				todos: [newTodo, ...this.state.todos],
+				nextId: this.state.nextId + 1
+			},
+			() => {
+				localStorage.setItem("todos", JSON.stringify(this.state.todos));
+				localStorage.setItem("nextId", this.state.nextId);
+			}
+		);
 	}
 
 	handleDelete(id) {
 		let newTodos = this.state.todos.filter(todo => todo.id !== id);
-		this.setState({
-			todos: newTodos
-		});
+		this.setState(
+			{
+				todos: newTodos
+			},
+			() => {
+				localStorage.setItem("todos", JSON.stringify(this.state.todos));
+			}
+		);
 	}
 
 	handleEdit(id, newPropObj) {
@@ -62,9 +69,15 @@ class TodoList extends Component {
 			return todo;
 		});
 
-		this.setState({ todos: newTodos });
+		this.setState(
+			{
+				todos: newTodos
+			},
+			() => {
+				localStorage.setItem("todos", JSON.stringify(this.state.todos));
+			}
+		);
 	}
-
 	render() {
 		const allTodos = this.state.todos.map(todo => (
 			<Todo
