@@ -3,10 +3,6 @@ import React, { Component } from 'react';
 class NewTodoForm extends Component {
 	constructor(props) {
 		super(props)
-		this.state = {
-			id: '',
-			description: ''
-		}
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 	}
@@ -29,7 +25,7 @@ class NewTodoForm extends Component {
           <input
             type="text"
             name="title"
-            placeholder="topic"
+            placeholder="topic "
             onChange={this.handleChange}
           />
           <label htmlFor="id">Todo Desc: </label>
