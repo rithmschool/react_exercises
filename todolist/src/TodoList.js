@@ -7,10 +7,10 @@ class TodoList extends Component {
 		super(props);
 		this.state = {
 			todos: [],
-			nextId: 1,
-			editTodo: ""
+			nextId: 0
 		};
-
+		this.handleDelete = this.handleDelete.bind(this);
+		this.handleEdit = this.handleEdit.bind(this);
 		this.addTodo = this.addTodo.bind(this);
 	}
 
@@ -27,18 +27,42 @@ class TodoList extends Component {
 		});
 	}
 
-	addTodo(e) {
+	toggleComplete(id) {
+		const newTodos = this.state.todos.map(todo => {
+			if (todo.id === id) {
+				todo.complete = !todo.complete;
+			}
+			return todo;
+		});
 		this.setState({
-			todos: [e, ...this.state.todos],
+			todos: newTodos
+		});
+	}
+
+	addTodo(e) {
+		const newTodo = { ...e, id: this.state.nextId };
+		this.setState({
+			todos: [newTodo, ...this.state.todos],
 			nextId: this.state.nextId + 1
 		});
 	}
 
 	handleDelete(id) {
-		let newTodos = this.state.todos.filter(t => t.id !== id);
+		let newTodos = this.state.todos.filter(todo => todo.id !== id);
 		this.setState({
 			todos: newTodos
 		});
+	}
+
+	handleEdit(id, newPropObj) {
+		let newTodos = this.state.todos.map(todo => {
+			if (todo.id === id) {
+				todo = Object.assign({}, todo, newPropObj);
+			}
+			return todo;
+		});
+
+		this.setState({ todos: newTodos });
 	}
 
 	render() {
@@ -48,7 +72,10 @@ class TodoList extends Component {
 				id={todo.id}
 				title={todo.title}
 				description={todo.description}
-				handleDelete={this.handleDelete.bind(this, todo.id)}
+				handleDelete={() => this.handleDelete(todo.id)}
+				handleEdit={newPropObj => this.handleEdit(todo.id, newPropObj)}
+				toggleComplete={() => this.toggleComplete(todo.id)}
+				complete={todo.complete}
 			/>
 		));
 

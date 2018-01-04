@@ -4,60 +4,87 @@ class Todo extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			complete: false,
-			isSelected: false
+			openEditTitle: false,
+			openEditDescription: false
 		};
-		this.toggleComplete = this.toggleComplete.bind(this);
+		this.toggleEditTitle = this.toggleEditTitle.bind(this);
+		this.toggleEditDescription = this.toggleEditDescription.bind(this);
+		this.handleUpdateDescription = this.handleUpdateDescription.bind(this);
+		this.handleUpdateTitle = this.handleUpdateTitle.bind(this);
+		this.handleComplete = this.handleComplete.bind(this);
 	}
-	toggleTitleEdit() {
+
+	//TODO: set focus to input when toggled open using ref
+
+	toggleEditTitle() {
 		this.setState({
-			editText: this.props.todo.title,
-			isSelected: true
+			openEditTitle: !this.state.openEditTitle
+		});
+	}
+	toggleEditDescription() {
+		this.setState({
+			openEditDescription: !this.state.openEditDescription
 		});
 	}
 
-	toggleDescriptionEdit() {
-		this.setState({
-			editText: this.props.todo.description,
-			isSelected: true
-		});
+	handleUpdateTitle(e) {
+		let newTitle = e.target.value;
+		this.props.handleEdit({ title: newTitle });
 	}
-	toggleComplete() {
-		this.setState({
-			complete: !this.state.complete
-		});
+
+	handleUpdateDescription(e) {
+		let newDescription = e.target.value;
+		this.props.handleEdit({ description: newDescription });
+	}
+
+	handleComplete(e) {
+		e.preventDefault();
+		this.props.toggleComplete();
 	}
 	render() {
-		let buttonText = this.state.complete ? "done!!!" : "not done";
-		let taskStatus = this.state.complete ? "done!!!" : "";
-		let title = this.state.isSelected ? (
+		let buttonText = this.props.complete
+			? "mark as not done"
+			: "mark as done";
+		let taskStatus = this.props.complete ? "done!!!" : "";
+		let title = this.state.openEditTitle ? (
 			<input
 				type="text"
-				onChange={this.handleChange}
+				onChange={this.handleUpdateTitle}
 				placeholder="enter new task"
 				name="title"
-				value={this.state.title.value}
+				value={this.props.title}
 			/>
 		) : (
 			this.props.title
 		);
-		let description = this.state.isSelected ? (
+		let description = this.state.openEditDescription ? (
 			<input
 				type="text"
-				onChange={this.handleChange}
+				onChange={this.handleUpdateDescription}
 				placeholder="describe your task"
 				name="description"
-				value={this.state.description.value}
+				value={this.props.description}
 			/>
 		) : (
 			this.props.description
 		);
 		return (
 			<div>
-				<h3 onDoubleClick={this.toggleTitleEdit}>{title}</h3>
+				{/*TODO: add keyDown listener for enter key*/}
+				<h3
+					onDoubleClick={this.toggleEditTitle}
+					onBlur={this.toggleEditTitle}
+				>
+					{title}
+				</h3>
 				<i>{taskStatus}</i>
-				<p onDoubleClick={this.toggleDescriptionEdit}>{description}</p>
-				<button onClick={this.toggleComplete}>{buttonText}</button>
+				<p
+					onDoubleClick={this.toggleEditDescription}
+					onBlur={this.toggleEditDescription}
+				>
+					{description}
+				</p>
+				<button onClick={this.handleComplete}>{buttonText}</button>
 				<button onClick={this.props.handleDelete}>x</button>
 			</div>
 		);

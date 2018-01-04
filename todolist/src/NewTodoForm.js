@@ -4,8 +4,8 @@ class NewTodoForm extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			title: this.props.title,
-			description: this.props.description,
+			title: "",
+			description: "",
 			complete: false
 		};
 		this.handleChange = this.handleChange.bind(this);
