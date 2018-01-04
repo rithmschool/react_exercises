@@ -7,25 +7,37 @@ class TodoList extends Component {
 		super(props);
 		this.state = {
 			todos: [],
-			nextId: 1
+			nextId: 1,
+			editTodo: ""
 		};
-		this.handleAdd = this.handleAdd.bind(this);
+
+		this.addTodo = this.addTodo.bind(this);
 	}
 
-	handleDelete(idx) {
-		let newTodos = this.state.todos.filter(t => t.id !== idx);
+	handleEdit(id) {
+		let editedTodo = this.state.todos.filter(t => t.id === id);
+		let editTodos = this.state.todos.map(el => {
+			if (el.id === id) {
+				return editedTodo;
+			}
+			return el;
+		});
 		this.setState({
-			todos: newTodos
+			todos: editTodos
 		});
 	}
 
-	handleAdd(newTodo) {
+	addTodo(e) {
 		this.setState({
-			todos: this.state.todos.concat({
-				...newTodo,
-				id: this.state.nextId
-			}),
-			nextId: ++this.state.nextId
+			todos: [e, ...this.state.todos],
+			nextId: this.state.nextId + 1
+		});
+	}
+
+	handleDelete(id) {
+		let newTodos = this.state.todos.filter(t => t.id !== id);
+		this.setState({
+			todos: newTodos
 		});
 	}
 
@@ -33,6 +45,7 @@ class TodoList extends Component {
 		const allTodos = this.state.todos.map(todo => (
 			<Todo
 				key={todo.id}
+				id={todo.id}
 				title={todo.title}
 				description={todo.description}
 				handleDelete={this.handleDelete.bind(this, todo.id)}
@@ -41,8 +54,8 @@ class TodoList extends Component {
 
 		return (
 			<div>
-				<NewTodoForm addTodo={this.handleAdd} />
-				{allTodos.reverse()}
+				<NewTodoForm handleAdd={this.addTodo} />
+				{allTodos}
 			</div>
 		);
 	}

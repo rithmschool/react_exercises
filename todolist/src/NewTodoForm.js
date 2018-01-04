@@ -4,8 +4,9 @@ class NewTodoForm extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			title: "",
-			description: ""
+			title: this.props.title,
+			description: this.props.description,
+			complete: false
 		};
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
@@ -17,7 +18,7 @@ class NewTodoForm extends Component {
 	}
 	handleSubmit(e) {
 		e.preventDefault();
-		this.props.addTodo(this.state);
+		this.props.handleAdd(this.state);
 		this.setState({
 			title: "",
 			description: ""
@@ -25,23 +26,25 @@ class NewTodoForm extends Component {
 	}
 	render() {
 		return (
-			<form onSubmit={this.handleSubmit}>
-				<input
-					type="text"
-					onChange={this.handleChange}
-					placeholder="enter new task"
-					name="title"
-					value={this.state.title}
-				/>
-				<input
-					type="text"
-					onChange={this.handleChange}
-					placeholder="describe your task"
-					name="description"
-					value={this.state.description}
-				/>
-				<input type="submit" value="add new task" />
-			</form>
+			<div>
+				<form onSubmit={this.handleSubmit}>
+					<input
+						type="text"
+						onChange={this.handleChange}
+						placeholder="enter new task"
+						name="title"
+						value={this.state.title}
+					/>
+					<input
+						type="text"
+						onChange={this.handleChange}
+						placeholder="describe your task"
+						name="description"
+						value={this.state.description}
+					/>
+					<input type="submit" value="add new task" />
+				</form>
+			</div>
 		);
 	}
 }
