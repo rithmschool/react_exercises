@@ -7,6 +7,13 @@ const ListItem = styled.li`
 
 //stateless functional component
 
-const TodoItem = props => <ListItem done={props.done}>{props.name}</ListItem>;
+const TodoItem = props => (
+	<div>
+		<ListItem done={props.done}>
+			{props.name}
+			<button onClick={props.remove}>Remove this Todo</button>
+		</ListItem>;
+	</div>
+);
 
 export default TodoItem;
