@@ -1,55 +1,46 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
 import Box from './Box'
-
 
 class App extends Component {
   constructor(props) {
     super(props);
-
-    const numBoxes = 24;
-    const boxes = [];
-
-    for (let i = 1; i <= numBoxes; i++) {
-      boxes.push({
-        id: i,
-        color: this.getRandomColor()
-      })
-    }
-    this.state = {boxes}
-    this.handleClick = this.handleClick.bind(this);
+    this.state = {
+      names: ['Trevor', 'Emily', 'Issy', 'Scarlett']
+    };
 
   }
 
-  getRandomColor() { let index = Math.floor(Math.random() * this.props.allColors.length);
-    return this.props.allColors[index];
+  getRandomColor() {
+     let colorChoice = Math.floor(Math.random() * this.props.allColors.length);
+     return this.props.allColors[colorChoice];
   }
 
 
-  handleClick(e) {
-    const newBoxes = this.state.boxes.map(box => {
-      if (box.id == e.target.id) {
-        box.color = this.getRandomColor()
-      }
-      return box;  
-    })
+  handleClick(idx) {
+    const { names } = this.state;
+    const newNames = names 
+      .slice(0,idx)
+      .concat(names.slice(idx + 1));
     this.setState({
-      boxes: newBoxes
-    })  
+      names: newNames
+    });
   }
-
 
   render() {
-    let boxes = this.state.boxes.map((box, index) => {
-      return <Box id={box.id} key={index} color={box.color} clickEvent={this.handleClick}/>
-    })
-
-    return (
-      <div className="App">
-        {boxes}
+    let names = this.state.names.map((name,idx) => {
+      <div> 
+        <p removeName={this.handleClick.bind(this,idx)}
+          name={name}
+          key={idx}
+        />
       </div>
-    );
+    })
+    return (
+      <div>
+        <h2>Below should be boxes</h2>
+          {names}
+      </div>
+    )
   }
 }
 
