@@ -25,10 +25,17 @@ class NewTodoForm extends Component {
       <div>
         <h4>Add a todo!</h4>
         <form onSubmit={this.handleSubmit}>
-          <label htmlFor="id">Todo: </label>
+          <label htmlFor="id">Todo Name: </label>
           <input
             type="text"
-            name="id"
+            name="title"
+            placeholder="topic"
+            onChange={this.handleChange}
+          />
+          <label htmlFor="id">Todo Desc: </label>
+          <input
+            type="text"
+            name="text"
             placeholder="what do ya need tadah?"
             onChange={this.handleChange}
           />
