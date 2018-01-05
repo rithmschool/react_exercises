@@ -17,6 +17,7 @@ class EditTodoForm extends Component{
 	handleEdit(e){
 		e.preventDefault();
 		this.props.edit(this.props.id, this.state.title, this.state.description);
+		this.props.history.goBack();
 	}
 
 
