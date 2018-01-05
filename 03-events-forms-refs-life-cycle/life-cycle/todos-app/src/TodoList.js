@@ -5,67 +5,53 @@ import TodoForm from "./TodoForm";
 class TodoList extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      todos: [],
+      latestId: 0
+    }
     this.handleAdd = this.handleAdd.bind(this);
     this.handleEdit = this.handleEdit.bind(this);
+    this.updateLocalStorage = this.updateLocalStorage.bind(this);
   }
 
-  componentWillMount() {
-    let todos = JSON.parse(localStorage.getItem("todos")) || [];
-    let latestId = +JSON.parse(localStorage.getItem("latestId")) || 0;
+  updateLocalStorage() {
+    localStorage.setItem("todos", JSON.stringify(this.state.todos));
+    localStorage.setItem("latestId", this.state.latestId);
+  }
+
+  componentDidMount() {
+    const todos = JSON.parse(localStorage.getItem("todos")) || this.state.todos;
+    const latestId = +JSON.parse(localStorage.getItem("latestId")) || this.state.latestId;
     this.setState({ todos, latestId });
   }
 
   handleAdd(newTodo) {
-    var newId = this.state.latestId + 1;
-    this.setState(
-      {
-        latestId: newId,
-        todos: [
-          {
-            ...newTodo,
-            id: newId
-          },
-          ...this.state.todos
-        ]
-      },
-      () => {
-        localStorage.setItem("todos", JSON.stringify(this.state.todos));
-        localStorage.setItem("latestId", this.state.latestId);
-      }
-    );
+    const latestId = this.state.latestId + 1;
+    const todos = [{...newTodo, id: latestId}, ...this.state.todos];
+    this.setState({ todos, latestId }, this.updateLocalStorage);
   }
 
   handleEdit(id, updatedTodo) {
-    let newTodos = this.state.todos.map(todo => {
-      if (id === todo.id) {
-        todo = Object.assign({}, todo, updatedTodo, {
-          isShowingEditForm: false
-        });
-      }
-      return todo;
-    });
-    this.setState({ todos: newTodos }, () => {
-      localStorage.setItem("todos", JSON.stringify(this.state.todos));
-    });
+    const todos = this.state.todos.map(todo => (
+      id === todo.id
+      ? { ...todo, ...updatedTodo, isShowingEditForm: false}
+      : todo
+    ));
+    this.setState({ todos }, this.updateLocalStorage);
   }
 
   handleDelete(id) {
-    let newTodos = this.state.todos.filter(t => t.id !== id);
-    this.setState({ todos: newTodos }, () => {
-      localStorage.setItem("todos", JSON.stringify(this.state.todos));
-    });
+    const todos = this.state.todos.filter(t => t.id !== id);
+    this.setState({ todos }, this.updateLocalStorage);
   }
 
   toggle(id, key) {
-    let newTodos = this.state.todos.map(todo => {
-      if (id === todo.id) {
-        todo = Object.assign({}, todo, { [key]: !todo[key] });
-      }
-      return todo;
-    });
-    this.setState({ todos: newTodos }, () => {
-      localStorage.setItem("todos", JSON.stringify(this.state.todos));
-    });
+    const todos = this.state.todos.map(todo => (
+      id === todo.id
+      ? { ...todo, [key]: !todo[key] }
+      : todo
+    ));
+    this.setState({ todos }, this.updateLocalStorage);
   }
 
   render() {
