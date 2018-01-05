@@ -6,8 +6,8 @@ class TodoForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: this.props.title,
-      description: this.props.description
+      title: this.props.currentTitle,
+      description: this.props.currentDescription
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -21,15 +21,17 @@ class TodoForm extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.handleSubmit(this.state);
-    this.setState({
-      title: "",
-      description: ""
-    });
+    if (this.state.title) {
+      this.props.handleSubmit(this.state);
+      this.setState({
+        title: "",
+        description: ""
+      });
+    }
   }
 
   render() {
-    let val = this.props.title ? "Edit this todo!" : "Add this todo!";
+    let buttonText = this.props.currentTitle ? "Edit this todo!" : "Add this todo!";
     let { title, description } = this.state;
     return (
       <form onSubmit={this.handleSubmit}>
@@ -57,21 +59,21 @@ class TodoForm extends Component {
             />
           </label>
         </div>
-        <input type="submit" value={val} />
+        <input type="submit" value={buttonText} />
       </form>
     );
   }
 }
 
 TodoForm.propTypes = {
-  title: PropTypes.string,
-  description: PropTypes.string,
+  currentTitle: PropTypes.string.isRequired,
+  currentDescription: PropTypes.string.isRequired,
   handleSubmit: PropTypes.func.isRequired
 };
 
 TodoForm.defaultProps = {
-  title: "",
-  description: ""
+  currentTitle: "",
+  currentDescription: ""
 };
 
 export default TodoForm;

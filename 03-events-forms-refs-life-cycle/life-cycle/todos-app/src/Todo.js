@@ -17,8 +17,8 @@ const Todo = ({
   let buttonText = isComplete ? "incomplete" : "complete";
   let editForm = isShowingEditForm ? (
     <TodoForm
-      title={title}
-      description={description}
+      currentTitle={title}
+      currentDescription={description}
       handleSubmit={handleEdit}
     />
   ) : null;
@@ -44,7 +44,6 @@ const Todo = ({
 };
 
 Todo.propTypes = {
-  id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   isComplete: PropTypes.bool.isRequired,

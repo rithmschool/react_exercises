@@ -58,7 +58,6 @@ class TodoList extends Component {
     const todos = this.state.todos.map(todo => (
       <Todo
         key={todo.id}
-        id={todo.id}
         title={todo.title}
         description={todo.description}
         handleDelete={this.handleDelete.bind(this, todo.id)}
