@@ -85,12 +85,19 @@ class TodoList extends Component {
 				key={todo.id}
 				id={todo.id}
 				title={todo.title}
+				description={todo.description}
 				handleDelete={() => this.handleDelete(todo.id)}
 				handleEdit={newPropObj => this.handleEdit(todo.id, newPropObj)}
 				toggleComplete={() => this.toggleComplete(todo.id)}
 				complete={todo.complete}
 			/>
 		));
+
+		const showTodo = props => {
+			const id = +props.match.params.id;
+			const todo = allTodos.find(todo => todo.props.id === id) || null;
+			return <div>{todo}</div>;
+		};
 
 		return (
 			<div>
@@ -100,6 +107,15 @@ class TodoList extends Component {
 						render={props => (
 							<NewTodoForm handleAdd={this.addTodo} {...props} />
 						)}
+					/>
+					<Route
+						path="/todos/:id"
+						// component={props =>
+						// 	allTodos.find(
+						// 		todo => todo.props.id === +props.match.params.id
+						// 	) || null
+						// }
+						render={showTodo}
 					/>
 					<Route
 						path="/todos"
