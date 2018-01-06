@@ -14,19 +14,40 @@ class Todo extends Component {
 		this.handleUpdateDescription = this.handleUpdateDescription.bind(this);
 		this.handleUpdateTitle = this.handleUpdateTitle.bind(this);
 		this.handleComplete = this.handleComplete.bind(this);
+		this.setTitleFocus = this.setTitleFocus.bind(this);
+		this.setDescriptionFocus = this.setDescriptionFocus.bind(this);
 	}
 
 	//TODO: set focus to input when toggled open using ref
+	setTitleFocus() {
+		this.titleElement.focus();
+	}
+
+	setDescriptionFocus() {
+		this.descriptionElement.focus();
+	}
 
 	toggleEditTitle() {
-		this.setState({
-			openEditTitle: !this.state.openEditTitle
-		});
+		this.setState(
+			{
+				openEditTitle: !this.state.openEditTitle
+			},
+			() => {
+				if (this.state.openEditDescription) return this.setTitleFocus();
+			}
+		);
 	}
+
 	toggleEditDescription() {
-		this.setState({
-			openEditDescription: !this.state.openEditDescription
-		});
+		this.setState(
+			{
+				openEditDescription: !this.state.openEditDescription
+			},
+			() => {
+				if (this.state.openEditDescription)
+					return this.setDescriptionFocus();
+			}
+		);
 	}
 
 	handleUpdateTitle(e) {
@@ -57,6 +78,9 @@ class Todo extends Component {
 					placeholder="enter new task"
 					name="title"
 					value={this.props.title}
+					onBlur={this.toggleEditTitle}
+					ref={el => (this.titleElement = el)}
+					autoFocus
 				/>
 			</Link>
 		) : (
@@ -70,6 +94,9 @@ class Todo extends Component {
 					placeholder="describe your task"
 					name="description"
 					value={this.props.description}
+					onBlur={this.toggleEditDescription}
+					ref={el => (this.descriptionElement = el)}
+					autoFocus
 				/>
 			</Link>
 		) : (
@@ -78,19 +105,9 @@ class Todo extends Component {
 		return (
 			<div>
 				{/*TODO: add keyDown listener for enter key*/}
-				<h3
-					onDoubleClick={this.toggleEditTitle}
-					onBlur={this.toggleEditTitle}
-				>
-					{title}
-				</h3>
+				<h3 onDoubleClick={this.toggleEditTitle}>{title}</h3>
 				<i>{taskStatus}</i>
-				<p
-					onDoubleClick={this.toggleEditDescription}
-					onBlur={this.toggleEditDescription}
-				>
-					{description}
-				</p>
+				<p onDoubleClick={this.toggleEditDescription}>{description}</p>
 				<button onClick={this.handleComplete}>{buttonText}</button>
 				<Link to={`/todos/${this.props.id}`}>
 					<button>details</button>
