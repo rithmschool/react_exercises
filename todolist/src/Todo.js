@@ -50,24 +50,28 @@ class Todo extends Component {
 			: "mark as done";
 		let taskStatus = this.props.complete ? "done!!!" : "";
 		let title = this.state.openEditTitle ? (
-			<input
-				type="text"
-				onChange={this.handleUpdateTitle}
-				placeholder="enter new task"
-				name="title"
-				value={this.props.title}
-			/>
+			<Link to={`/todos/${this.props.id}/edit`}>
+				<input
+					type="text"
+					onChange={this.handleUpdateTitle}
+					placeholder="enter new task"
+					name="title"
+					value={this.props.title}
+				/>
+			</Link>
 		) : (
 			this.props.title
 		);
 		let description = this.state.openEditDescription ? (
-			<input
-				type="text"
-				onChange={this.handleUpdateDescription}
-				placeholder="describe your task"
-				name="description"
-				value={this.props.description}
-			/>
+			<Link to={`/todos/${this.props.id}/edit`}>
+				<input
+					type="text"
+					onChange={this.handleUpdateDescription}
+					placeholder="describe your task"
+					name="description"
+					value={this.props.description}
+				/>
+			</Link>
 		) : (
 			this.props.description
 		);
