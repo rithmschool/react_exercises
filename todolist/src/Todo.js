@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 class Todo extends Component {
 	constructor(props) {
@@ -42,6 +43,7 @@ class Todo extends Component {
 		e.preventDefault();
 		this.props.toggleComplete();
 	}
+
 	render() {
 		let buttonText = this.props.complete
 			? "mark as not done"
@@ -86,6 +88,9 @@ class Todo extends Component {
 					{description}
 				</p>
 				<button onClick={this.handleComplete}>{buttonText}</button>
+				<Link to={`/todos/${this.props.id}`}>
+					<button>details</button>
+				</Link>
 				<button onClick={this.props.handleDelete}>x</button>
 			</div>
 		);

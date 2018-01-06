@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 class NewTodoForm extends Component {
 	constructor(props) {
@@ -18,11 +19,10 @@ class NewTodoForm extends Component {
 	}
 	handleSubmit(e) {
 		e.preventDefault();
-		this.props.handleAdd(this.state);
-		this.setState({
-			title: "",
-			description: ""
-		});
+		if (this.state.title) {
+			this.props.handleAdd(this.state);
+			this.props.history.push("/todos");
+		}
 	}
 	render() {
 		return (
@@ -48,5 +48,11 @@ class NewTodoForm extends Component {
 		);
 	}
 }
+
+NewTodoForm.propTypes = {
+	title: PropTypes.string,
+	description: PropTypes.string,
+	addTodo: PropTypes.func.isRequired
+};
 
 export default NewTodoForm;

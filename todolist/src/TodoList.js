@@ -85,7 +85,6 @@ class TodoList extends Component {
 				key={todo.id}
 				id={todo.id}
 				title={todo.title}
-				description={todo.description}
 				handleDelete={() => this.handleDelete(todo.id)}
 				handleEdit={newPropObj => this.handleEdit(todo.id, newPropObj)}
 				toggleComplete={() => this.toggleComplete(todo.id)}
