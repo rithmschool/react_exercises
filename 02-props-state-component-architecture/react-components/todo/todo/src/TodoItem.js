@@ -5,14 +5,21 @@ const ListItem = styled.li`
 	text-decoration: ${props => (props.done ? "line-through" : "none")};
 `;
 
+const XStyle = styled.span`
+	:hover {
+		color: red;
+		cursor: pointer;
+	}
+`;
+
 //stateless functional component
 
 const TodoItem = props => (
 	<div>
 		<ListItem done={props.done}>
-			{props.name}
-			<button onClick={props.remove}>Remove this Todo</button>
-		</ListItem>;
+			{props.title + " - " + props.details + " "}
+			<XStyle onClick={props.remove}>X</XStyle>
+		</ListItem>
 	</div>
 );
 

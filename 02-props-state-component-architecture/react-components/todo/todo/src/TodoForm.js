@@ -11,7 +11,7 @@ export default class TodoForm extends Component {
 		this.handleSubmit = this.handleSubmit.bind(this);
 	}
 	handleChange(e) {
-		this.setState({ [e.target.name]: e.target.valur });
+		this.setState({ [e.target.name]: e.target.value });
 	}
 	handleSubmit(e) {
 		e.preventDefault();
@@ -23,11 +23,12 @@ export default class TodoForm extends Component {
 	}
 
 	render() {
+		let val = this.props.title ? "Edit a todo" : "Add a todo";
+		let { title, details } = this.state;
 		return (
 			<div>
-				<h4>Add a todo!</h4>
 				<form onSubmit={this.handleSubmit}>
-					<label htmlFor="title">todo name</label>
+					<label htmlFor="title">title</label>
 					<input
 						type="text"
 						placeholder="What's your todo?"

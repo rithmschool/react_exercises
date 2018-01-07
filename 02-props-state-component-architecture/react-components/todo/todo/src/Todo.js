@@ -6,10 +6,7 @@ export default class TodoList extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			todos: [
-				{ name: "one", done: false, id: 1 },
-				{ name: "two", done: true, id: 2 }
-			]
+			todos: []
 		};
 
 		this.handleAdd = this.handleAdd.bind(this);
@@ -30,17 +27,47 @@ export default class TodoList extends Component {
 		) => (
 			<TodoItem
 				key={todo.id}
-				name={todo.name}
+				title={todo.title}
+				details={todo.details}
 				done={todo.done}
 				remove={this.handleRemove}
+				add={this.handleAdd}
 			/>
 		));
 
 		return (
-			<section>
-				<TodoForm addTodo={this.handleAdd} />
-				{todos}
-			</section>
+			<div>
+				<Route
+				 exact
+				 path="/todos"
+				 render={() => <div>{todos} </div>}
+				 />
+				 <Route
+				  exact
+				  path="/todos/new"
+				  render={routeProps => TodoForm handleSubmit ={this.handleAdd} {...routeProps}/>}
+				  />
+				  <Route
+				   exact
+				   path="/todos/:id/"
+				   render={props =>
+				   	todos.find(t => t.props.id === +props.match.params.id) || null}
+				   />
+				   <Route
+				   exact
+				   path="/todos/:id/edit"
+				   render={props => {
+				   	let todo = todos.find(t => t.props.id === +props.match.params.id) || null;
+				   	return (
+				   		<TodoForm
+				   	{...props}
+				   	handleSubmit= {this.handleChange.bind(this, todo.props.id)}
+				   	title={todo.props.title}
+				   	details={todo.props.details}
+				   	/>
+				   	)
+				   }}
+			/>
 		);
 	}
 } //})}
