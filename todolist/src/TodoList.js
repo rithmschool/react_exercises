@@ -80,23 +80,42 @@ class TodoList extends Component {
 		);
 	}
 	render() {
-		const allTodos = this.state.todos.map(todo => (
-			<Todo
-				key={todo.id}
-				id={todo.id}
-				title={todo.title}
-				description={todo.description}
-				handleDelete={() => this.handleDelete(todo.id)}
-				handleEdit={newPropObj => this.handleEdit(todo.id, newPropObj)}
-				toggleComplete={() => this.toggleComplete(todo.id)}
-				complete={todo.complete}
-			/>
-		));
+		const AllTodos = props => {
+			return this.state.todos.map(todo => (
+				<Todo
+					key={todo.id}
+					id={todo.id}
+					title={todo.title}
+					description={todo.description}
+					handleDelete={() => this.handleDelete(todo.id)}
+					handleEdit={newPropObj =>
+						this.handleEdit(todo.id, newPropObj)
+					}
+					toggleComplete={() => this.toggleComplete(todo.id)}
+					complete={todo.complete}
+					{...props}
+				/>
+			));
+		};
 
 		const showTodo = props => {
 			const id = +props.match.params.id;
-			const todo = allTodos.find(todo => todo.props.id === id) || null;
-			return <div>{todo}</div>;
+			const todo = this.state.todos.find(todo => todo.id === id) || null;
+			return (
+				<Todo
+					key={todo.id}
+					id={todo.id}
+					title={todo.title}
+					description={todo.description}
+					handleDelete={() => this.handleDelete(todo.id)}
+					handleEdit={newPropObj =>
+						this.handleEdit(todo.id, newPropObj)
+					}
+					toggleComplete={() => this.toggleComplete(todo.id)}
+					complete={todo.complete}
+					{...props}
+				/>
+			);
 		};
 
 		return (
@@ -111,7 +130,7 @@ class TodoList extends Component {
 					<Route path="/todos/:id" render={showTodo} />
 					<Route
 						path="/todos"
-						render={props => <div>{allTodos}</div>}
+						component={props => <AllTodos {...props} />}
 					/>
 					<Redirect to="/todos" />
 				</Switch>

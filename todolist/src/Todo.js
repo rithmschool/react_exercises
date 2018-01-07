@@ -100,34 +100,8 @@ class Todo extends Component {
 		) : (
 			this.props.description
 		);
-		// const itemView = (
-		// 	<div>
-		// 		<h3 onDoubleClick={this.toggleEditTitle}>{title}</h3>
-		// 		<i>{taskStatus}</i>
-		// 		<p onDoubleClick={this.toggleEditDescription}>{description}</p>
-		// 		<button onClick={this.handleComplete}>{buttonText}</button>
-		// 		<Link to={`/todos/${this.props.id}`}>
-		// 			<button>details</button>
-		// 		</Link>
-		// 		<button onClick={this.props.handleDelete}>x</button>
-		// 	</div>
-		// );
-		// const listView = (
-		// 	<div>
-		// 		<h3>{title}</h3>
-		// 		<i>{taskStatus}</i>
-		// 		<Link to={`/todos/${this.props.id}`}>
-		// 			<button>details</button>
-		// 		</Link>
-		// 	</div>
-		// );
-		// const isShow = props => props.match.params.id;
-		// if (!isShow) {
-		// 	return <div>{listView}</div>;
-		// } else {
-		// 	return <div>{itemView}</div>;
-		// }
-		return (
+		//TODO: consolidate itemView and listView using conditional rendering
+		const itemView = (
 			<div>
 				<h3 onDoubleClick={this.toggleEditTitle}>{title}</h3>
 				<i>{taskStatus}</i>
@@ -139,6 +113,23 @@ class Todo extends Component {
 				<button onClick={this.props.handleDelete}>x</button>
 			</div>
 		);
+		const listView = (
+			<div>
+				<h3>{title}</h3>
+				<i>{taskStatus}</i>
+				<Link to={`/todos/${this.props.id}`}>
+					<button>details</button>
+				</Link>
+			</div>
+		);
+
+		console.log(this.props.match.params.id);
+
+		if (this.props.match.params.id) {
+			return <div>{itemView}</div>;
+		} else {
+			return <div>{listView}</div>;
+		}
 	}
 }
 
