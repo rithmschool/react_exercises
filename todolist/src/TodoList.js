@@ -105,7 +105,7 @@ class TodoList extends Component {
 					<Route
 						path="/todos/new"
 						render={props => (
-							<NewTodoForm handleAdd={this.addTodo} {...props} />
+							<NewTodoForm addTodo={this.addTodo} {...props} />
 						)}
 					/>
 					<Route path="/todos/:id" render={showTodo} />

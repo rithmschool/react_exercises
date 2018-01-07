@@ -17,8 +17,6 @@ class Todo extends Component {
 		this.setTitleFocus = this.setTitleFocus.bind(this);
 		this.setDescriptionFocus = this.setDescriptionFocus.bind(this);
 	}
-
-	//TODO: set focus to input when toggled open using ref
 	setTitleFocus() {
 		this.titleElement.focus();
 	}
@@ -102,9 +100,35 @@ class Todo extends Component {
 		) : (
 			this.props.description
 		);
+		// const itemView = (
+		// 	<div>
+		// 		<h3 onDoubleClick={this.toggleEditTitle}>{title}</h3>
+		// 		<i>{taskStatus}</i>
+		// 		<p onDoubleClick={this.toggleEditDescription}>{description}</p>
+		// 		<button onClick={this.handleComplete}>{buttonText}</button>
+		// 		<Link to={`/todos/${this.props.id}`}>
+		// 			<button>details</button>
+		// 		</Link>
+		// 		<button onClick={this.props.handleDelete}>x</button>
+		// 	</div>
+		// );
+		// const listView = (
+		// 	<div>
+		// 		<h3>{title}</h3>
+		// 		<i>{taskStatus}</i>
+		// 		<Link to={`/todos/${this.props.id}`}>
+		// 			<button>details</button>
+		// 		</Link>
+		// 	</div>
+		// );
+		// const isShow = props => props.match.params.id;
+		// if (!isShow) {
+		// 	return <div>{listView}</div>;
+		// } else {
+		// 	return <div>{itemView}</div>;
+		// }
 		return (
 			<div>
-				{/*TODO: add keyDown listener for enter key*/}
 				<h3 onDoubleClick={this.toggleEditTitle}>{title}</h3>
 				<i>{taskStatus}</i>
 				<p onDoubleClick={this.toggleEditDescription}>{description}</p>
