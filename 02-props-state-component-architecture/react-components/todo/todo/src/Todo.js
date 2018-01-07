@@ -65,9 +65,11 @@ export default class TodoList extends Component {
 				   	title={todo.props.title}
 				   	details={todo.props.details}
 				   	/>
+
 				   	)
 				   }}
-			/>
+			    />
+		   </div>
 		);
 	}
 } //})}
