@@ -123,8 +123,6 @@ class Todo extends Component {
 			</div>
 		);
 
-		console.log(this.props.match.params.id);
-
 		if (this.props.match.params.id) {
 			return <div>{itemView}</div>;
 		} else {
