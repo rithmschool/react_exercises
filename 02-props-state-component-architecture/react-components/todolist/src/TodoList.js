@@ -22,6 +22,7 @@ class TodoList extends Component {
 			]
    		}
    		this.handleAdd = this.handleAdd.bind(this);
+   		this.addEdits = this.addEdits.bind(this);
   	}
 
   	handleRemove(idx) {
@@ -35,17 +36,35 @@ class TodoList extends Component {
   	}
 
   	handleAdd(newTodo) {
-    // this.setState({gifs: this.state.gifs.concat(newGif)})
-    this.setState({todos: [newTodo, ...this.state.todos]})
+    	this.setState({todos: [newTodo, ...this.state.todos]})
   }
+
+
+	addEdits(e) {
+  		console.log(e);
+
+  		const editTodos = this.state.todos.map((todo,idx) => {
+  			if (idx === e.position) {
+  				todo.title = e.title,
+  				todo.text = e.text
+  			}
+  			return todo
+  		})
+  		this.setState({
+  			todos: editTodos
+  		})
+  	}
+
 
 	render() {
 		let todos = this.state.todos.map((todo, idx) => {
 			return (
-				<Todo key={todo.id}
+				<Todo key={idx}
+					id={idx}
 					removeTodo= {this.handleRemove.bind(this, idx)}
 					title={todo.title}
 					text={todo.text}
+					addEdits={this.addEdits}
 				/>
 			)
 		})

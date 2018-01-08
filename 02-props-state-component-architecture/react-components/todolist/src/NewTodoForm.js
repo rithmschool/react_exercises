@@ -3,6 +3,11 @@ import React, { Component } from 'react';
 class NewTodoForm extends Component {
 	constructor(props) {
 		super(props)
+
+    this.state = {
+      title: '',
+      text: ''
+    }
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 	}
@@ -13,6 +18,10 @@ class NewTodoForm extends Component {
 
 	handleSubmit(e) {
 		e.preventDefault();
+    this.setState({
+      title:'',
+      text: ''
+    })
 	    this.props.addTodo(this.state);
 	}
 	
@@ -25,11 +34,13 @@ class NewTodoForm extends Component {
           <input
             type="text"
             name="title"
+            value={this.state.title}
             placeholder="topic "
             onChange={this.handleChange}
           />
           <label htmlFor="id">Todo Desc: </label>
           <input
+            value={this.state.text}
             type="text"
             name="text"
             placeholder="what do ya need tadah?"
