@@ -1,7 +1,9 @@
 ## State Exercises
 
-For this exercise, you will create 24 components (square shaped div's) that have a randomly assigned background color. Every 300 milliseconds, the color of a randomly chosen component's background color will change.
+For this exercise, you will create 24 components (square shaped divs) that have a specific background color. Each time you click on one of the divs, it cycles to the next background color.
+
+*BONUS* - Make the background color changing random, i.e. when I click a color, it selects randomly from the list of colors.
 
 Your application should look like this:
 
-![Random Colors](./randomcolors.gif)
+![Random Colors](./clickcolors.gif)
